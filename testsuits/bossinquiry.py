@@ -94,7 +94,7 @@ def newInquiry():
     driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div/div[2]/form/div[2]/div/button[1]").click()
     driver.find_element_by_xpath(
-        ".//*[@id='app']/div[2]/div[2]/div/div[2]/div/div[2]/div[1]/div[3]/table/tbody/tr[1]/td[5]/div/button").click()
+        ".//*[@id='app']/div[2]/div[2]/div/div[2]/div/div[2]/div[1]/div[4]/div[2]/table/tbody/tr/td[5]/div/button").click()
     time.sleep(1)
 
     # 新增一行SKU
@@ -279,7 +279,7 @@ def newInquiry():
         ".//*[@id='app']/div[2]/div[2]/div/div[1]/div[2]/div[1]/form/div[3]/div[5]/div[3]/div[1]/div/div/div/div[1]/input")
     time.sleep(1)
     select.click()
-    for i in range(1, 3):
+    for i in range(1, 8):
         select.send_keys(Keys.UP)
     select.send_keys(Keys.ENTER)
     time.sleep(0.5)

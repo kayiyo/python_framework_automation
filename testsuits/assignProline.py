@@ -104,7 +104,7 @@ def assignLine():
         ".//*[@id='app']/div[2]/div[2]/div/div[1]/div[2]/div[2]/div[3]/div/div[2]/div/div/div/div/form/div/div/div/div[1]/input")
     time.sleep(1)
     select.click()
-    for i in range(1,8):
+    for i in range(1,6):
         select.send_keys(Keys.UP)
     select.send_keys(Keys.ENTER)
     time.sleep(0.5)
