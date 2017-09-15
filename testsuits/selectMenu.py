@@ -88,15 +88,15 @@ def quoteInquiry():
     mylogger.info("找到下拉框")
     time.sleep(1)
     # 定位到要单击的元素
-    qqq = driver.find_element_by_xpath("html/body/div[2]/div/div[1]/ul/li[2]")
+    el = driver.find_element_by_xpath("html/body/div[2]/div/div[1]/ul/li[2]")
     mylogger.info("找到下拉元素")
     time.sleep(1)
     # # 对定位到的元素执行鼠标移动操作
-    # ActionChains(driver).move_to_element(qqq).perform()
+    # ActionChains(driver).move_to_element(el).perform()
     # mylogger.info("移动到指定元素")
     # time.sleep(1)
     # 对定位到的元素执行鼠标点击操作
-    ActionChains(driver).click(qqq).perform()
+    ActionChains(driver).click(el).perform()
     mylogger.info("点击下拉元素")
     time.sleep(1)
     # 按条件进行搜索操作
