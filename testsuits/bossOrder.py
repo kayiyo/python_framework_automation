@@ -79,7 +79,7 @@ def newOrder():
 
     # 显示新增订单当天时间
     Ordertime = time.strftime("%Y-%m-%d", time.localtime())
-    Ordertime1 = time.strftime("%Y%m%d", time.localtime())
+    Ordertime1 = time.strftime("%Y%m%d%H%S", time.localtime())
 
     # 点击新建订单按钮
     driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/button").click()
@@ -118,7 +118,7 @@ def newOrder():
 
     # 输入客户名称
     driver.find_element_by_xpath(
-        ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[5]/div/div[2]/form/div/div[1]/div/div/input").send_keys("motumubo")
+        ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[5]/div/div[2]/form/div/div[1]/div/div/input").send_keys("Bruce.Lee")
     driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[5]/div/div[2]/form/div/div[2]/div/button[1]").click()
     # 选择客户
@@ -138,11 +138,11 @@ def newOrder():
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[6]/div/div[2]/div/div[3]/table/tbody/tr/td[4]/div/button").click()
     time.sleep(1)
 
-    # 输入市场经办人邮箱
-    inputbox = driver.find_element_by_xpath(
-        ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[8]/div[2]/span[2]/div/div/div/input")
-    inputbox.clear()
-    inputbox.send_keys("xujie@group.com")
+    # # 输入市场经办人邮箱(市场经办人邮箱自动带出）
+    # inputbox = driver.find_element_by_xpath(
+    #     ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[8]/div[2]/span[2]/div/div/div/input")
+    # inputbox.clear()
+    # inputbox.send_keys("xujie@group.com")
 
     # 输入订单金额
     inputbox = driver.find_element_by_xpath(
