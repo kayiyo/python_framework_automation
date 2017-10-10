@@ -9,8 +9,8 @@ from selenium.webdriver.common.keys import Keys
 from framework.logger import Logger
 import selenium.webdriver.common.action_chains
 
-mylogger = Logger(logger="bossOrderLog").getlog()
 
+mylogger = Logger(logger="bossOrderLog").getlog()
 config = ConfigParser.ConfigParser()
 # file_path = os.path.dirname(os.getcwd()) + '/config/config.ini'
 file_path = os.path.dirname(os.path.abspath('.')) + '/config/configuration.ini'
@@ -26,9 +26,6 @@ def load():
     url = config.get("bossOrder", "URL")
     driver.get(url)
     time.sleep(2)
-
-
-# driver.find_element_by_xpath("html/body/div[1]/div[1]/ul/li[1]/a").click()
 
 
 def inputusername():
