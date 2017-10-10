@@ -4,10 +4,10 @@ import ConfigParser
 import os.path
 import time
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
+import selenium.webdriver.support.ui
 from selenium.webdriver.common.keys import Keys
 from framework.logger import Logger
-from selenium.webdriver.common.action_chains import ActionChains
+import selenium.webdriver.common.action_chains
 
 mylogger = Logger(logger="bossOrderLog").getlog()
 
@@ -16,23 +16,22 @@ config = ConfigParser.ConfigParser()
 file_path = os.path.dirname(os.path.abspath('.')) + '/config/configuration.ini'
 config.read(file_path)
 
-
-
 driver = webdriver.Chrome()
 # driver.set_window_size(800,600)
 driver.maximize_window()
 driver.implicitly_wait(6)
 
 
-
 def load():
     url = config.get("bossOrder", "URL")
     driver.get(url)
     time.sleep(2)
-	# driver.find_element_by_xpath("html/body/div[1]/div[1]/ul/li[1]/a").click()
 
 
-def inputUsername():
+# driver.find_element_by_xpath("html/body/div[1]/div[1]/ul/li[1]/a").click()
+
+
+def inputusername():
     user = config.get("bossOrder", "USER")
     inputbox = driver.find_element_by_xpath(".//*[@id='app']/div/form/div[1]/div/div[1]/input")
     inputbox.clear()
@@ -40,7 +39,7 @@ def inputUsername():
     time.sleep(1)
 
 
-def inputPassword():
+def inputpassword():
     pw = config.get("bossOrder", "PW")
     inputbox = driver.find_element_by_xpath(".//*[@id='app']/div/form/div[2]/div/div/input")
     inputbox.clear()
@@ -48,7 +47,7 @@ def inputPassword():
     time.sleep(1)
 
 
-def inputCode():
+def inputcode():
     CODE = config.get("bossOrder", "CODE")
     inputbox = driver.find_element_by_xpath(".//*[@id='verificationCode']")
     inputbox.clear()
@@ -68,43 +67,39 @@ def logout():
     time.sleep(2)
 
 
-def manOrder():
+def manorder():
     driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li/div").click()
     time.sleep(1)
     driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li/ul/a[1]/li").click()
     time.sleep(2)
 
 
-def newOrder():
-
+def neworder():
     # 显示新增订单当天时间
-    Ordertime = time.strftime("%Y-%m-%d", time.localtime())
-    Ordertime1 = time.strftime("%Y%m%d%H%S", time.localtime())
+    ordertime = time.strftime("%Y-%m-%d", time.localtime())
+    ordertime1 = time.strftime("%Y%m%d%H%M%S", time.localtime())
 
     # 点击新建订单按钮
     driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/button").click()
     time.sleep(2)
 
-
-
     # PO号
     inputbox = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[2]/div[2]/span[2]/div/div/div[1]/input")
     inputbox.clear()
-    inputbox.send_keys("PO" + Ordertime1 + "ddgl")
+    inputbox.send_keys("PO" + ordertime1 + "ddgl")
 
     # 订单签约日期
-    Ordertime = time.strftime("%Y-%m-%d", time.localtime())
     inputbox = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[3]/div[2]/span[2]/div/input")
     inputbox.clear()
-    inputbox.send_keys(Ordertime)
+    inputbox.send_keys(ordertime)
 
     # 执行单号
     inputbox = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[3]/div[1]/span[2]/div/div/div/input")
     inputbox.clear()
-    inputbox.send_keys("EX" + Ordertime1 + "ddgl")
+    inputbox.send_keys("EX" + ordertime1 + "ddgl")
 
     # 选择客户
     # 点击选择按钮
@@ -118,14 +113,14 @@ def newOrder():
 
     # 输入客户名称
     driver.find_element_by_xpath(
-        ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[5]/div/div[2]/form/div/div[1]/div/div/input").send_keys("Bruce.Lee")
+        ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[5]/div/div[2]/form/div/div[1]/div/div/input").send_keys(
+        "Bruce.Lee")
     driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[5]/div/div[2]/form/div/div[2]/div/button[1]").click()
     # 选择客户
     driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[5]/div/div[2]/div[1]/div[4]/div[2]/table/tbody/tr/td[5]/div/button").click()
     time.sleep(1)
-
 
     # 选择市场经办人
     # 点击选择按钮
@@ -154,7 +149,7 @@ def newOrder():
     select = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[9]/div[1]/span[2]/div/div/div[2]/div[1]/input")
     select.click()
-    for i in range(1, 4):
+    for iii in range(1, 4):
         select.send_keys(Keys.UP)
     select.send_keys(Keys.ENTER)
     time.sleep(0.5)
@@ -163,7 +158,7 @@ def newOrder():
     select = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[10]/div[1]/span[2]/div/div/div/div[1]/input")
     select.click()
-    for i in range(1, 8):
+    for iii in range(1, 8):
         select.send_keys(Keys.UP)
     select.send_keys(Keys.ENTER)
     time.sleep(0.5)
@@ -172,7 +167,7 @@ def newOrder():
     select = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[10]/div[2]/span[2]/div/div/div/div[1]/input")
     select.click()
-    for i in range(1, 7):
+    for iii in range(1, 7):
         select.send_keys(Keys.UP)
     select.send_keys(Keys.ENTER)
     time.sleep(0.5)
@@ -181,7 +176,7 @@ def newOrder():
     select = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[11]/div[1]/span[2]/div/div/div[1]/div[1]/input")
     select.click()
-    for i in range(1, 12):
+    for iii in range(1, 12):
         select.send_keys(Keys.UP)
     select.send_keys(Keys.ENTER)
     time.sleep(0.5)
@@ -190,7 +185,7 @@ def newOrder():
     select = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[11]/div[2]/span[2]/div/div/div[1]/div[1]/input")
     select.click()
-    for i in range(1, 3):
+    for iii in range(1, 3):
         select.send_keys(Keys.UP)
     select.send_keys(Keys.ENTER)
     time.sleep(0.5)
@@ -206,8 +201,9 @@ def newOrder():
     time.sleep(2)
 
     # 读取平台订单号
-    ordercode = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[1]/div[3]/table/tbody/tr[1]/td[1]/div").text
-    mylogger.info(u"平台订单号：" + ordercode )
+    ordercode = driver.find_element_by_xpath(
+        ".//*[@id='app']/div[2]/div[2]/div/div[1]/div[3]/table/tbody/tr[1]/td[1]/div").text
+    mylogger.info(u"平台订单号：" + ordercode)
 
 
 testTime = int(config.get("bossOrder", "TESTTIME"))
@@ -218,32 +214,32 @@ mylogger.info("TestTask : bossOrder")
 testTimes = testTime + 1
 mylogger.info("Test Time is : %s" % testTime)
 
-for i in range(1, testTimes):
+for iii in range(1, testTimes):
     # 进入登录界面
     load();
 
     # 输入用户名
-    inputUsername();
+    inputusername();
 
     # 输入密码
-    inputPassword();
+    inputpassword();
 
     # 输入验证码
-    # inputCode();
+    # inputcode();
 
     # 登录
     login();
 
     # 订单管理
-    manOrder();
+    manorder();
 
     # 新建订单
-    newOrder();
+    neworder();
 
     # 退出
     logout();
 
-    mylogger.info("Test Passed= %s" % i)
+    mylogger.info("Test Passed= %s" % iii)
     # print time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), "Test Passed =", i
 
 driver.quit()
