@@ -1,4 +1,5 @@
 # coding=utf-8
+# 订单管理/出库信息
 
 import ConfigParser
 import os.path
@@ -8,7 +9,7 @@ from selenium import webdriver
 
 from framework.logger import Logger
 
-mylogger = Logger(logger="deliverOrderLog").getlog()
+mylogger = Logger(logger="orderDeliverLog").getlog()
 config = ConfigParser.ConfigParser()
 # file_path = os.path.dirname(os.getcwd()) + '/config/config.ini'
 file_path = os.path.dirname(os.path.abspath('.')) + '/config/configuration.ini'
