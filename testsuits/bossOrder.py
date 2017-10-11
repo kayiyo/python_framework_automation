@@ -3,12 +3,11 @@
 import ConfigParser
 import os.path
 import time
-from selenium import webdriver
-import selenium.webdriver.support.ui
-from selenium.webdriver.common.keys import Keys
-from framework.logger import Logger
-import selenium.webdriver.common.action_chains
 
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+from framework.logger import Logger
 
 mylogger = Logger(logger="bossOrderLog").getlog()
 config = ConfigParser.ConfigParser()
@@ -23,13 +22,13 @@ driver.implicitly_wait(6)
 
 
 def load():
-    url = config.get("bossOrder", "URL")
+    url = config.get("bossOrder", "url")
     driver.get(url)
     time.sleep(2)
 
 
 def inputusername():
-    user = config.get("bossOrder", "USER")
+    user = config.get("bossOrder", "user")
     inputbox = driver.find_element_by_xpath(".//*[@id='app']/div/form/div[1]/div/div[1]/input")
     inputbox.clear()
     inputbox.send_keys(user)
@@ -37,7 +36,7 @@ def inputusername():
 
 
 def inputpassword():
-    pw = config.get("bossOrder", "PW")
+    pw = config.get("bossOrder", "pw")
     inputbox = driver.find_element_by_xpath(".//*[@id='app']/div/form/div[2]/div/div/input")
     inputbox.clear()
     inputbox.send_keys(pw)
@@ -45,10 +44,10 @@ def inputpassword():
 
 
 def inputcode():
-    CODE = config.get("bossOrder", "CODE")
+    code = config.get("bossOrder", "code")
     inputbox = driver.find_element_by_xpath(".//*[@id='verificationCode']")
     inputbox.clear()
-    inputbox.send_keys(CODE)
+    inputbox.send_keys(code)
     time.sleep(1)
 
 
@@ -203,8 +202,8 @@ def neworder():
     mylogger.info(u"平台订单号：" + ordercode)
 
 
-testTime = int(config.get("bossOrder", "TESTTIME"))
-url = config.get("bossOrder", "URL")
+testTime = int(config.get("bossOrder", "testtime"))
+url = config.get("bossOrder", "url")
 mylogger.info("The test server url is: %s" % url)
 mylogger.info("TestTask : bossOrder")
 
