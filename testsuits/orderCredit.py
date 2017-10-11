@@ -4,6 +4,7 @@
 import ConfigParser
 import os.path
 import time
+import random
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -122,10 +123,11 @@ def delivery():
             time.sleep(0.5)
 
             # 金额
+            shouxin = random.randint(1, 10)*1000
             inputbox = driver.find_element_by_xpath(
                 ".//*[@id='app']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/form/div[2]/div/div/input")
             inputbox.clear()
-            inputbox.send_keys("6000")
+            inputbox.send_keys(shouxin)
 
             # 信保时间
             inputbox = driver.find_element_by_xpath(
@@ -137,7 +139,7 @@ def delivery():
             driver.find_element_by_xpath(
                 ".//*[@id='app']/div[2]/div[2]/div/div/div[1]/div/div[3]/span/button[2]").click()
 
-            mylogger.info(u"平台订单号：" + readordercode + u"交收成功")
+            mylogger.info(u"平台订单号：" + readordercode + u"授信成功|金额：%s" % shouxin)
             time.sleep(2)
 
             # 返回信保信息列表
