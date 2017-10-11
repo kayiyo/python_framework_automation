@@ -70,7 +70,7 @@ def delivery():
     # 点击出库信息
     driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li[1]/ul/a[3]/li").click()
     time.sleep(0.5)
-    ordersn1 = 59
+    ordersn1 = 1
     ordersn2 = 10000
     runforever = True
     ordersn = ordersn1
