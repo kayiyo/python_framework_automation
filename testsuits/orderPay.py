@@ -1,5 +1,5 @@
 # coding=utf-8
-# 订单管理/收款信息
+# 订单管理/收款信息/增加一条收款信息
 
 import ConfigParser
 import os.path
@@ -71,10 +71,9 @@ def delivery():
     # 点击收款信息
     driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li[1]/ul/a[6]/li").click()
     time.sleep(0.5)
-    ordersn1 = 1
-    ordersn2 = 10000
+
+    ordersn = int(config.get("bossOrder", "ordersn"))
     runforever = True
-    ordersn = ordersn1
 
     while runforever:
         ordertime = time.strftime("%Y-%m-%d", time.localtime())

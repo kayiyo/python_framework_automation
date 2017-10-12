@@ -20,7 +20,7 @@ class Logger(object):
         # log_path = os.path.dirname(os.getcwd()) + '/Logs/'  # 项目根目录下/Logs 保存日志
         log_path = os.path.dirname(os.path.abspath('.')) + '/logs/'
         # 如果case组织结构式 /testsuit/featuremodel/xxx.py ， 那么得到的相对路径的父路径就是项目根目录
-        log_name = log_path + rq + '.log'
+        log_name = log_path + logger + rq + '.log'
         fh = logging.FileHandler(log_name)
         fh.setLevel(logging.INFO)
 

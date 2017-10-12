@@ -1,17 +1,15 @@
 # coding=utf-8
-# 订单管理/授信信息
+# 订单管理/收款信息/全部收款完成
 
 import ConfigParser
 import os.path
 import time
-import random
 
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 
 from framework.logger import Logger
 
-mylogger = Logger(logger="orderCreditLog").getlog()
+mylogger = Logger(logger="orderPayLog").getlog()
 config = ConfigParser.ConfigParser()
 # file_path = os.path.dirname(os.getcwd()) + '/config/config.ini'
 file_path = os.path.dirname(os.path.abspath('.')) + '/config/configuration.ini'
@@ -70,8 +68,8 @@ def delivery():
     # 点击订单管理
     driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li/div").click()
     time.sleep(0.5)
-    # 点击授信信息
-    driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li[1]/ul/a[7]/li").click()
+    # 点击收款信息
+    driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li[1]/ul/a[6]/li").click()
     time.sleep(0.5)
 
     ordersn = int(config.get("bossOrder", "ordersn"))
@@ -99,7 +97,7 @@ def delivery():
             mylogger.info(u"平台订单号：" + serachcode + u"不存在！")
             runforever = False
         else:
-            # 点击授信使用
+            # 点击收款按钮
             driver.find_element_by_xpath(
                 ".//*[@id='app']/div[2]/div[2]/div/div[1]/div[4]/div[2]/table/tbody/tr/td[9]/div/a[2]/button").click()
             time.sleep(1)
@@ -108,47 +106,17 @@ def delivery():
             readordercode = driver.find_element_by_xpath(
                 ".//*[@id='app']/div[2]/div[2]/div/table/tr[1]/td[1]/span").text
 
-            # 添加一条信保使用记录
-            driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div/button").click()
+            # 确认全部收款完成按钮
+            driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div/button[2]").click()
             driver.switch_to_alert()
+            driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div/div[2]/div/div[3]/span/div/button[2]").click()
 
-            # 类型
-            select = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/form/div[1]/div/div/div[1]/input")
-            select.click()
-            iiii = random.randint(2,3)
-            for iii in range(1, iiii):
-                select.send_keys(Keys.UP)
-            select.send_keys(Keys.ENTER)
-            time.sleep(0.5)
 
-            # 金额
-            shouxin = random.randint(1, 10)*1000
-            inputbox = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/form/div[2]/div/div/input")
-            inputbox.clear()
-            inputbox.send_keys(shouxin)
-
-            # 信保时间
-            inputbox = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/form/div[3]/div/div/div/div/div/input")
-            inputbox.clear()
-            inputbox.send_keys(ordertime)
-
-            # 保存信保记录
-            driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/div/div[1]/div/div[3]/span/button[2]").click()
-
-            while iiii == 3:
-                shouxin = shouxin * -1
-                break
-            else:
-                shouxin = shouxin * 1
-            mylogger.info(u"平台订单号：" + readordercode + u"授信成功|金额：%s" % shouxin)
+            mylogger.info(u"平台订单号：" + readordercode + u"确认全部收款完成")
             time.sleep(2)
 
-            # 返回信保信息列表
-            driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li[1]/ul/a[7]/li").click()
+            # 返回交收信息列表
+            driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li[1]/ul/a[6]/li").click()
 
 
 

@@ -9,7 +9,7 @@ from selenium import webdriver
 
 from framework.logger import Logger
 
-mylogger = Logger(logger="orderAcceptLog").getlog()
+mylogger = Logger(logger="orderCreditLog").getlog()
 config = ConfigParser.ConfigParser()
 # file_path = os.path.dirname(os.getcwd()) + '/config/config.ini'
 file_path = os.path.dirname(os.path.abspath('.')) + '/config/configuration.ini'
@@ -71,10 +71,10 @@ def delivery():
     # 点击交收信息
     driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li[1]/ul/a[5]/li").click()
     time.sleep(0.5)
-    ordersn1 = 1
-    ordersn2 = 10000
+
+    ordersn = int(config.get("bossOrder", "ordersn"))
     runforever = True
-    ordersn = ordersn1
+
 
     while runforever:
         ordertime = time.strftime("%Y-%m-%d", time.localtime())
