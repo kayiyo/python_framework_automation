@@ -1,4 +1,6 @@
 # coding=utf-8
+# 订单管理/新增订单
+__author__ = 'kayiyo'
 
 import ConfigParser
 import os.path

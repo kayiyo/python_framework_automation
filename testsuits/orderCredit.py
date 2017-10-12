@@ -1,5 +1,6 @@
 # coding=utf-8
 # 订单管理/授信信息
+__author__ = 'kayiyo'
 
 import ConfigParser
 import os.path

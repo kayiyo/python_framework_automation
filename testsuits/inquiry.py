@@ -1,4 +1,5 @@
 # coding=utf-8
+__author__ = 'kayiyo'
 
 import time
 from selenium import webdriver
