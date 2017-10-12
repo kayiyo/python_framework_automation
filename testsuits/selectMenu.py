@@ -29,7 +29,6 @@ def load():
     url = config.get("bossQuote", "URL")
     driver.get(url)
     time.sleep(2)
-	# driver.find_element_by_xpath("html/body/div[1]/div[1]/ul/li[1]/a").click()
 
 
 def inputUsername():

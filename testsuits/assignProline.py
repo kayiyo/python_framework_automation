@@ -5,9 +5,9 @@ __author__ = 'kayiyo'
 import ConfigParser
 import os.path
 import time
+
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.keys import Keys
+
 from framework.logger import Logger
 
 mylogger = Logger(logger="AssignProlineLog").getlog()
@@ -27,7 +27,6 @@ def load():
     url = config.get("assignProline", "URL")
     driver.get(url)
     time.sleep(2)
-	# driver.find_element_by_xpath("html/body/div[1]/div[1]/ul/li[1]/a").click()
 
 
 def inputUsername():

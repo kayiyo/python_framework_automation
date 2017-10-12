@@ -6,8 +6,6 @@ import ConfigParser
 import os.path
 import time
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.keys import Keys
 from framework.logger import Logger
 
 mylogger = Logger(logger="CheckInquiryLog").getlog()
@@ -16,7 +14,6 @@ config = ConfigParser.ConfigParser()
 # file_path = os.path.dirname(os.getcwd()) + '/config/config.ini'
 file_path = os.path.dirname(os.path.abspath('.')) + '/config/configuration.ini'
 config.read(file_path)
-
 
 driver = webdriver.Chrome()
 # driver.set_window_size(800,600)
@@ -27,7 +24,6 @@ def load():
     url = config.get("checkInquiry", "URL")
     driver.get(url)
     time.sleep(2)
-	# driver.find_element_by_xpath("html/body/div[1]/div[1]/ul/li[1]/a").click()
 
 
 def inputUsername():
@@ -53,10 +49,8 @@ def inputCode():
     inputbox.send_keys(CODE)
     time.sleep(1)
 
-
 def login():
     driver.find_element_by_xpath(".//*[@id='app']/div/form/div[4]/div/button").click()
-
 
 def logout():
     driver.find_element_by_xpath(".//*[@id='app']/div[1]/div[2]/p/span").click()
@@ -72,7 +66,6 @@ def manInquiry():
     time.sleep(2)
 
 def checkInquiry():
-
     # 清空搜索记录
     driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[1]/form/div[8]/div/button[2]").click()
     time.sleep(0.5)
@@ -111,7 +104,6 @@ def checkInquiry():
     driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[5]/div/div[2]/div[1]/div[3]/table/tbody/tr/td[4]/div/button").click()
     time.sleep(1)
-
 
 
 testTime = int(config.get("checkInquiry", "TESTTIME"))

@@ -11,14 +11,6 @@ driver.maximize_window()
 driver.implicitly_wait(6)
 
 
-# localurl = "http://172.18.18.196:88"
-
-# User = "Brucejet"
-User = "Victortony159@outlook.com"
-PW = "Bruce12345"
-CODE = "test"
-
-
 def load():
 	driver.get(url)
 	driver.find_element_by_xpath("html/body/div[1]/div[1]/ul/li[1]/a").click()
