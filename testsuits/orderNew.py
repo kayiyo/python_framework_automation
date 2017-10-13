@@ -266,7 +266,7 @@ def orderinfo():
             readend = driver.find_element_by_xpath(
                 ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[11]/div[2]/span[2]").text
 
-            readall = u"|PO." + readpo + u"|客户编号:" + readcusno + u"|经办人:" + readmarket + u"|订单金额:" + readorderaccount + u"|clause:" + readclause + u"|起运方式:" + readway + u"[" + readstart + u"-->" + readend + u"]"
+            readall = u"|PO." + readpo + u"|客户编号:" + readcusno + u"{" + readmarket + u"}" +u"|订单金额:" + readorderaccount + u"|clause:" + readclause + u"|起运方式:" + readway + u"[" + readstart + u"-->" + readend + u"]"
 
             mylogger.info(u"平台订单号：" + readorderno)
             mylogger.info(readall)
