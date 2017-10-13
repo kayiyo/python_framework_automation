@@ -152,7 +152,7 @@ def neworder():
     select = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[9]/div[1]/span[2]/div/div/div[2]/div[1]/input")
     select.click()
-    for iii in range(1, 4):
+    for iii in range(1, random.randint(2, 10)):
         select.send_keys(Keys.UP)
     select.send_keys(Keys.ENTER)
     time.sleep(0.5)
@@ -161,7 +161,7 @@ def neworder():
     select = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[10]/div[1]/span[2]/div/div/div/div[1]/input")
     select.click()
-    for iii in range(1, random.randint(2, 10)):
+    for iii in range(1, random.randint(2, 20)):
         select.send_keys(Keys.UP)
     select.send_keys(Keys.ENTER)
     time.sleep(0.5)
@@ -179,19 +179,19 @@ def neworder():
     select = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[11]/div[1]/span[2]/div/div/div[1]/div[1]/input")
     select.click()
-    for iii in range(1, random.randint(2, 20)):
+    for iii in range(1, random.randint(2, 200)):
         select.send_keys(Keys.UP)
     select.send_keys(Keys.ENTER)
-    time.sleep(0.5)
+    time.sleep(3)
 
     # 选择目的地
     select = driver.find_element_by_xpath(
         ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/form/div[11]/div[2]/span[2]/div/div/div[1]/div[1]/input")
     select.click()
-    for iii in range(1, random.randint(2, 20)):
+    for iii in range(1, random.randint(2, 200)):
         select.send_keys(Keys.UP)
     select.send_keys(Keys.ENTER)
-    time.sleep(0.5)
+    time.sleep(3)
 
     # 输入详细地址
     inputbox = driver.find_element_by_xpath(
@@ -201,7 +201,7 @@ def neworder():
 
     # 保存订单
     driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[1]/button").click()
-    time.sleep(2)
+    time.sleep(3)
 
     # # 读取平台订单号
     # ordercode = driver.find_element_by_xpath(
