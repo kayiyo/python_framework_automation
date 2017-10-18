@@ -6,6 +6,7 @@ __author__ = 'kayiyo'
 import ConfigParser
 import os.path
 import time
+import random
 
 from selenium import webdriver
 
@@ -119,10 +120,11 @@ def delivery():
             inputbox.send_keys(u"收到订单号：" + readordercode + u"款项ddgl")
 
             # 金额
+            shoukuan = random.randint(1, 10)*10000
             inputbox = driver.find_element_by_xpath(
                 ".//*[@id='app']/div[2]/div[2]/div/div/div[1]/div/div[2]/div/form/div[2]/div/div/input")
             inputbox.clear()
-            inputbox.send_keys("30000")
+            inputbox.send_keys(shoukuan)
 
             # 收款时间
             inputbox = driver.find_element_by_xpath(
@@ -134,7 +136,7 @@ def delivery():
             driver.find_element_by_xpath(
                 ".//*[@id='app']/div[2]/div[2]/div/div/div[1]/div/div[3]/span/button[2]").click()
 
-            mylogger.info(u"平台订单号：" + readordercode + u"交收成功")
+            mylogger.info(u"平台订单号：" + readordercode + u"收款成功|收款金额：USD %s" % shoukuan)
             time.sleep(2)
 
             # 返回交收信息列表
