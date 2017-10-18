@@ -136,7 +136,7 @@ def delivery():
             driver.find_element_by_xpath(
                 ".//*[@id='app']/div[2]/div[2]/div/div/div[1]/div/div[3]/span/button[2]").click()
 
-            mylogger.info(u"平台订单号：" + readordercode + u"收款成功|收款金额：USD %s" % shoukuan)
+            mylogger.info(u"平台订单号：" + readordercode + u"收款成功|收款金额： %s" % shoukuan)
             time.sleep(2)
 
             # 返回交收信息列表
