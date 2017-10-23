@@ -7,6 +7,7 @@ import os.path
 import time
 from selenium import webdriver
 from framework.logger import Logger
+from selenium.webdriver.common.keys import Keys
 
 mylogger = Logger(logger="BossInquiryLog").getlog()
 

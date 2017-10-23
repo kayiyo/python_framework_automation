@@ -5,6 +5,7 @@ __author__ = 'kayiyo'
 import ConfigParser
 import os.path
 import time
+from selenium.webdriver.common.keys import Keys
 
 from selenium import webdriver
 
