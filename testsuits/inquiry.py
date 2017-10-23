@@ -2,6 +2,8 @@
 # coding=utf-8
 __author__ = 'kayiyo'
 
+import ConfigParser
+import os.path
 import time
 from selenium import webdriver
 
@@ -9,6 +11,16 @@ driver = webdriver.Chrome()
 #driver.set_window_size(800,600)
 driver.maximize_window()
 driver.implicitly_wait(6)
+
+config = ConfigParser.ConfigParser()
+# file_path = os.path.dirname(os.getcwd()) + '/config/config.ini'
+file_path = os.path.dirname(os.path.abspath('.')) + '/config/configuration.ini'
+config.read(file_path)
+
+url = config.get("portal", "url")
+user = config.get("portal", "user")
+pw = config.get("portal", "pw")
+code = config.get("portal", "code")
 
 
 def load():
@@ -18,17 +30,17 @@ def load():
 
 def inputUsername():
     driver.find_element_by_xpath(".//*[@id='exampleInputEmail']").clear()
-    driver.find_element_by_xpath(".//*[@id='exampleInputEmail']").send_keys(User)
+    driver.find_element_by_xpath(".//*[@id='exampleInputEmail']").send_keys(user)
     time.sleep(1)
 
 def inputPassword():
     driver.find_element_by_xpath(".//*[@id='exampleInputPassword']").clear()
-    driver.find_element_by_xpath(".//*[@id='exampleInputPassword']").send_keys(PW)
+    driver.find_element_by_xpath(".//*[@id='exampleInputPassword']").send_keys(pw)
     time.sleep(1)
 
 def inputCode():
     driver.find_element_by_xpath(".//*[@id='verificationCode']").clear()
-    driver.find_element_by_xpath(".//*[@id='verificationCode']").send_keys(CODE)
+    driver.find_element_by_xpath(".//*[@id='verificationCode']").send_keys(code)
 
 def login():
     driver.find_element_by_xpath(".//*[@id='loginSubmit']").click()

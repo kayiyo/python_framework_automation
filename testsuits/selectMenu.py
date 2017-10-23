@@ -17,8 +17,6 @@ file_path = os.path.dirname(os.path.abspath('.')) + '/config/configuration.ini'
 config.read(file_path)
 
 
-
-
 driver = webdriver.Chrome()
 # driver.set_window_size(800,600)
 driver.maximize_window()
