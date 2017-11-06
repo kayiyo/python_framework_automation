@@ -274,8 +274,6 @@ mylogger.info("Test Time is : %s" % testTime)
 orderNew = orderNew()
 
 
-
-
 for iii in range(1, testTimes):
     # 进入登录界面
     orderNew.load(url)
