@@ -166,24 +166,28 @@ class crmNew(object):
             # mylogger.info(e)
             mylogger.info(u"CRM编码：" + crmcode + u"不存在！")
         else:
-            # 查看该订单
-            driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[3]/table/tbody/tr/td[7]/div/button").click()
-            time.sleep(1)
+            time.sleep(3)
+            # 读取客户编号
+            readcode = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[3]/table/tbody/tr/td[1]/div").text
+            # 读取审核状态
+            readstatus = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[3]/table/tbody/tr/td[5]/div").text
+            # 点击查询按钮
+            driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[3]/table/tbody/tr/td[7]/div/button").click()
+            time.sleep(3)
 
             # 读取公司名称
             readcrmcompany = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/form/div[7]/div/div/div/input").text
+                ".//*[@id='app']/div[2]/div[2]/div/form/div[7]/div/div/div/input").get_attribute("value")
 
             # 读取国家
             readcrmcountry = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/form/div[3]/div/div/div/input").text
+                ".//*[@id='app']/div[2]/div[2]/div/form/div[3]/div/div/div/input").get_attribute("value")
 
             # 读取年采购额
             readcrmamount = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/form/div[10]/div/div/div/input").text
+                ".//*[@id='app']/div[2]/div[2]/div/form/div[10]/div/div/div/input").get_attribute("value")
 
-            readall = u"|CRM:" + crmcode + u"|公司名称:" + readcrmcompany + u"|国家:" + readcrmcountry +u"|年采购额:" + u"[" + readcrmamount +u"]"
+            readall = u"|客户编号:" + readcode +"|CRM:" + crmcode + u"|公司名称:" + readcrmcompany + u"|国家:" + readcrmcountry + u"|年采购额:" + u"[" + readcrmamount +u"]" + u" {" + readstatus + u"}"
 
             mylogger.info(readall)
 
@@ -223,8 +227,8 @@ for iii in range(1, testTimes):
     # 新建订单
     crmNew.newcrm()
 
-    # # 读取订单
-    # crmNew.crminfo()
+    # 读取订单
+    crmNew.crminfo()
 
     # 退出
     crmNew.logout()
