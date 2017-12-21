@@ -60,7 +60,7 @@ class CrmNew(object):
     def mancrm(self):
         driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li[4]/div").click()
         time.sleep(0.5)
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li[4]/ul/a[1]/li").click()
+        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[1]/div/div/div/ul/li[4]/ul/li[1]").click()
         time.sleep(3)
 
     def newcrm(self):
@@ -156,14 +156,14 @@ class CrmNew(object):
         readcountrycode = driver.find_element_by_xpath(
             ".//*[@id='app']/div[2]/div[2]/div/form/div[5]/div/div/div/div[1]/div/div/div/input").get_attribute("value")
 
-        if readcountrycode == "NaN":
+        if readcountrycode == "NaN" or readcountrycode == "":
             inputbox = driver.find_element_by_xpath(
                 ".//*[@id='app']/div[2]/div[2]/div/form/div[5]/div/div/div/div[1]/div/div/div/input")
             inputbox.clear()
             inputbox.send_keys("00")
-            mylogger.info("00")
+            # mylogger.info("00")
         else:
-            mylogger.info(readcountrycode)
+            # mylogger.info(readcountrycode)
             pass
 
         # 提交
@@ -173,12 +173,13 @@ class CrmNew(object):
     def crminfo(self):
 
         # 重置查询条件
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[1]/form/div[4]/div[2]/div/div/button").click()
+        time.sleep(2)
+        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[1]/form/div[4]/button[2]").click()
         # 输入CRM编码
         driver.find_element_by_xpath(
             ".//*[@id='app']/div[2]/div[2]/div/div[1]/form/div[1]/div[2]/div/div/div/input").send_keys(crmcode)
         # 点击查询按钮
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[1]/form/div[4]/div[1]/div/div/button").click()
+        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[1]/form/div[4]/button[1]").click()
 
         try:
             driver.find_element_by_xpath(
@@ -197,16 +198,18 @@ class CrmNew(object):
             time.sleep(3)
 
             # 读取公司名称
+            # readcrmcompany = driver.find_element_by_xpath(
+            #     ".//*[@id='app']/div[2]/div[2]/div/form/div[7]/div/div/span").get_attribute("value")
             readcrmcompany = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/form/div[7]/div/div/div/input").get_attribute("value")
+                ".//*[@id='app']/div[2]/div[2]/div/form/div[7]/div/div/span").text
 
             # 读取国家
             readcrmcountry = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/form/div[3]/div/div/div/input").get_attribute("value")
+                ".//*[@id='app']/div[2]/div[2]/div/form/div[3]/div/div/span").text
 
             # 读取年采购额
             readcrmamount = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/form/div[10]/div/div/div/input").get_attribute("value")
+                ".//*[@id='app']/div[2]/div[2]/div/form/div[10]/div/div/span").text
 
             readall = u"|客户编号:" + readcode +"|CRM:" + crmcode + u"|公司名称:" + readcrmcompany + u"|国家:" + readcrmcountry + u"|年采购额:" + u"[" + readcrmamount +u"]" + u" {" + readstatus + u"}"
 
