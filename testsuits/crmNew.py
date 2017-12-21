@@ -24,7 +24,7 @@ driver = webdriver.Chrome()
 driver.maximize_window()
 driver.implicitly_wait(6)
 
-class crmNew(object):
+class CrmNew(object):
     def load(self, url):
         driver.get(url)
         time.sleep(2)
@@ -152,6 +152,20 @@ class crmNew(object):
         inputbox.clear()
         inputbox.send_keys(crmcode)
 
+        # 电话国家码
+        readcountrycode = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/form/div[5]/div/div/div/div[1]/div/div/div/input").get_attribute("value")
+
+        if readcountrycode == "NaN":
+            inputbox = driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/form/div[5]/div/div/div/div[1]/div/div/div/input")
+            inputbox.clear()
+            inputbox.send_keys("00")
+            mylogger.info("00")
+        else:
+            mylogger.info(readcountrycode)
+            pass
+
         # 提交
         driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/form/div[13]/div/button[1]").click()
         time.sleep(3)
@@ -209,7 +223,7 @@ mylogger.info("TestTask : crmNew")
 testTimes = testTime + 1
 mylogger.info("Test Time is : %s" % testTime)
 
-crmNew = crmNew()
+crmNew = CrmNew()
 
 
 for iii in range(1, testTimes):
