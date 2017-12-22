@@ -245,13 +245,13 @@ for iii in range(1, testTimes):
     # 登录
     crmNew.login()
 
-    # 订单管理
+    # 客户管理
     crmNew.mancrm()
 
-    # 新建订单
+    # 新增客户
     crmNew.newcrm()
 
-    # 读取订单
+    # 读取客户信息
     crmNew.crminfo()
 
     # 退出
