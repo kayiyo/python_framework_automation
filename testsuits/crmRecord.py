@@ -7,10 +7,8 @@ import ConfigParser
 import os.path
 import time
 import random
-
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-
 from framework.logger import Logger
 
 mylogger = Logger(logger="crmRecordLog").getlog()
@@ -23,6 +21,7 @@ driver = webdriver.Chrome()
 # driver.set_window_size(800,600)
 driver.maximize_window()
 driver.implicitly_wait(6)
+
 
 class CrmRecord(object):
     def load(self, url):
@@ -107,7 +106,8 @@ class CrmRecord(object):
         inputbox.send_keys("CRM")
         time.sleep(1)
 
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/div/div/div[2]/form/div[3]/div/button").click()
+        driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/div/div/div[2]/form/div[3]/div/button").click()
         time.sleep(1)
 
         global readcrmrecord
@@ -120,36 +120,37 @@ class CrmRecord(object):
 
         # 选择客户类型
         select = driver.find_element_by_xpath(
-            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[1]/div[2]/div[5]/div/div/div/div/div[1]/input")
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[1]/div[2]/div[4]/div/div/div/div/div[1]/input")
         select.click()
         for iii in range(1, random.randint(2, 10)):
             select.send_keys(Keys.UP)
         select.send_keys(Keys.ENTER)
         time.sleep(0.5)
 
-        # 客户档案公司信息
-        # # 公司固话
-        # inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[2]/div[1]/div[1]/div/div/input")
-        # inputbox.clear()
-        # inputbox.send_keys("")
-        #
-        # # 公司邮箱
-        # inputbox = driver.find_element_by_xpath("")
-        # inputbox.clear()
-        # inputbox.send_keys("")
+        # 选择是否油气
+        a = random.randint(2, 10)
+        if a % 2:
+            driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[1]/div[2]/div[5]/div/label[1]/span[1]/span").click()  # 选择油气是
+        else:
+            driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[1]/div[2]/div[5]/div/label[2]/span[1]/span").click()  # 选择油气否
 
         # 公司网址
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[2]/div[1]/div[2]/div/div[1]/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[2]/div[1]/div[2]/div/div[1]/input")
         inputbox.clear()
         inputbox.send_keys("www.%s.com" % crmname)
 
         # 成立日期
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[2]/div[2]/div[2]/div/div/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[2]/div[2]/div[2]/div/div/input")
         inputbox.clear()
         inputbox.send_keys(u"2010-01-01")
 
         # 注册资金
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[2]/div[1]/div[3]/div/div[1]/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[2]/div[1]/div[3]/div/div[1]/input")
         inputbox.clear()
         inputbox.send_keys(crmamount)
 
@@ -163,138 +164,170 @@ class CrmRecord(object):
         time.sleep(0.5)
 
         # 雇员数量
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[2]/div[2]/div[4]/div/div/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[2]/div[1]/div[4]/div/div/input")
         inputbox.clear()
         inputbox.send_keys(random.randint(1, 10000))
 
-        # 公司信息
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[3]/div/div/div/div[1]/textarea")
+        # 公司性质
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[3]/div/div/div/div[1]/input")
         inputbox.clear()
-        inputbox.send_keys(crmscope + crmpro)
+        inputbox.send_keys(u"公司性质")
+
+        # 子公司及名称
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[4]/div/div/div/div/input")
+        inputbox.clear()
+        inputbox.send_keys(u"子公司及名称")
+
+        # 地址
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[5]/div/div/div/div[1]/input")
+        inputbox.clear()
+        inputbox.send_keys(u"地址")
+
+        # 公司其他信息
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[6]/div/div/div/div[1]/textarea")
+        inputbox.clear()
+        inputbox.send_keys(u"公司其他信息")
+
+        # 财务报表/上传文件
+        upload = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[7]/div/div[1]/div/div/div/input")
+        a = random.randint(2, 11)
+        if a % 2:
+            upload.send_keys('d:\\1fortest\word.docx')
+        else:
+            upload.send_keys('d:\\1fortest\pdf.pdf')
+        time.sleep(3)
+
+        # 公司人员组织架构
+        upload = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[7]/div/div[2]/div/div/div/input")
+        a = random.randint(2, 11)
+        if a % 2:
+            upload.send_keys('d:\\1fortest\word.docx')
+        else:
+            upload.send_keys('d:\\1fortest\pdf.pdf')
+        time.sleep(3)
+        # uploadinfo = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[2]/div[1]/div[4]/div/div/ul")
+        # uploadinfo.get_attribute('value')
+        # mylogger.info(uploadinfo)
+
+        # # 财务报表/上传文件
+        # upload = driver.find_element_by_xpath(
+        #     ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[2]/div[1]/div[4]/div/div/div/button")
+        # upload.click()
+        # time.sleep(2)
+        #
+        # # SendKeys
+        # SendKeys.SendKeys('d:\\1fortest\word.docx')
+        # time.sleep(2)
+        # SendKeys.SendKeys("{ENTER}")
+        # time.sleep(2)
+
+
 
         # 主要联系人
         # 名字
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[4]/div[1]/div[1]/div[1]/div/div/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[8]/div[1]/div[1]/div[1]/div/div/input")
         inputbox.clear()
         inputbox.send_keys(u"贾步思%s" % crmtime2)
         # 职位
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[4]/div[1]/div[2]/div[1]/div/div/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[8]/div[1]/div[2]/div[1]/div/div/input")
         inputbox.clear()
-        inputbox.send_keys(u"采购经理" )
+        inputbox.send_keys(u"采购经理")
         # 购买角色
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[4]/div[1]/div[1]/div[2]/div/div/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[8]/div[1]/div[1]/div[2]/div/div/input")
         inputbox.clear()
         inputbox.send_keys(u"采购商")
         # 联系电话
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[4]/div[1]/div[2]/div[2]/div/div/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[8]/div[1]/div[2]/div[2]/div/div/input")
         inputbox.clear()
         inputbox.send_keys(random.randint(1, 100000000))
         # 邮箱
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[4]/div[1]/div[1]/div[3]/div/div/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[8]/div[1]/div[1]/div[3]/div/div/input")
         inputbox.clear()
         inputbox.send_keys(crmemail)
         # 喜好
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[4]/div[1]/div[2]/div[3]/div/div/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[8]/div[1]/div[2]/div[3]/div/div/input")
         inputbox.clear()
         inputbox.send_keys(u"运动")
-        # 详细地址
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[4]/div[2]/div/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"中国东山省南吉市北三路%s号" % crmtime2)
-        # 工作经历
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[4]/div[3]/div/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"瑞吉一瑞")
-        # 社会关系
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[4]/div[4]/div/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"社会关系")
+
+        for num in range(2, 9):
+            num = bytes(num)
+            read_box = driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[8]/div[" + num + "]/div/label").text
+            input_box = driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[1]/div/form/div[8]/div[" + num + "]/div/div/div/input").send_keys(read_box)
+
 
         # 上下游信息
+        time.sleep(3)
         driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div/div[1]/div/div[2]").click()
-        time.sleep(2)
+        time.sleep(3)
         # 上游信息
-        # 上游客户名称
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[1]/div[1]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"上游客户名称%s" % crmtime2)
-        # 客户的客户合作情况
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[1]/div[2]/div/div/textarea")
-        inputbox.clear()
-        inputbox.send_keys(u"客户的客户合作情况%s" %  crmtime2)
-        # 客户的客户业务类型
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[1]/div[3]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"客户的客户业务类型%s" %  crmtime2)
-        # 客户的客户规模
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[1]/div[4]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"客户的客户规模%s" %  crmtime2)
-        # 客户与其上游客户的结算方式
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[1]/div[5]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"客户与其上游客户的结算方式%s" %  crmtime2)
+        for num in range(1, 11):
+            num = bytes(num)
+            read_box = driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[1]/div[" + num + "]/label").text
+            read_box = read_box.replace(':', '')
+            try:
+                input_text = driver.find_element_by_xpath(
+                    ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[1]/div[" + num + "]/div/div/textarea")
+            except Exception as e:
+                driver.find_element_by_xpath(
+                    ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[1]/div[" + num + "]/div/div/input").send_keys(read_box)
+            else:
+                input_text.send_keys(read_box)
+
 
         # 下游信息
-        # 下游客户名称
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[2]/div[1]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"下游客户名称%s" % crmtime2)
-        # 客户与原供应商合作情况
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[2]/div[2]/div/div/textarea")
-        inputbox.clear()
-        inputbox.send_keys(u"客户与原供应商合作情况%s" % crmtime2)
-        # 原供应商供应的产品
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[2]/div[3]/div/div/textarea")
-        inputbox.clear()
-        inputbox.send_keys(u"原供应商供应的产品%s" % crmtime2)
-        # 客户原供应商信息
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[2]/div[4]/div/div/textarea")
-        inputbox.clear()
-        inputbox.send_keys(u"客户原供应商信息%s" % crmtime2)
-        # 与原供应商结算方式
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[2]/div[5]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"与原供应商结算方式%s" % crmtime2)
-        # 质保条款
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[2]/div[6]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"质保条款%s" % crmtime2)
+        for num in range(1, 10):
+            num = bytes(num)
+            read_box = driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[2]/div[" + num + "]/label").text
+            read_box = read_box.replace(':', '')
+            try:
+                input_text = driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[2]/div[" + num + "]/div/div/textarea")
+            except Exception as e:
+                driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[2]/div[" + num + "]/div/div/input").send_keys(read_box)
+            else:
+                input_text.send_keys(read_box)
 
-        # 新增下游信息A
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[2]/h4/button").click()
-        time.sleep(1)
-        # 下游客户名称A
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[3]/div[1]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"下游客户名称A%s" % crmtime2)
-        # 客户与原供应商合作情况A
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[3]/div[2]/div/div/textarea")
-        inputbox.clear()
-        inputbox.send_keys(u"客户与原供应商合作情况A%s" % crmtime2)
-        # 原供应商供应的产品A
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[3]/div[3]/div/div/textarea")
-        inputbox.clear()
-        inputbox.send_keys(u"原供应商供应的产品A%s" % crmtime2)
-        # 客户原供应商信息A
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[3]/div[4]/div/div/textarea")
-        inputbox.clear()
-        inputbox.send_keys(u"客户原供应商信息A%s" % crmtime2)
-        # 与原供应商结算方式A
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[3]/div[5]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"与原供应商结算方式A%s" % crmtime2)
-        # 质保条款A
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[3]/div[6]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"质保条款A%s" % crmtime2)
+        # 竞争对手信息
+        for num in range(1, 5):
+            num = bytes(num)
+            read_box = driver.find_element_by_xpath(
+                        ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[3]/div[" + num + "]/label").text
+            read_box = read_box.replace(':', '')
+            try:
+                input_text = driver.find_element_by_xpath(
+                            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[3]/div[" + num + "]/div/div/textarea")
+            except Exception as e:
+                driver.find_element_by_xpath(
+                            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[2]/div/form[3]/div[" + num + "]/div/div/input").send_keys(
+                            read_box)
+            else:
+                input_text.send_keys(read_box)
 
         # 业务基本信息
         driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div/div[1]/div/div[3]").click()
         time.sleep(2)
         # 业务基本信息/业务基本信息
         # 产品类型
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[1]/div/div/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[1]/div/div/input")
         inputbox.clear()
         inputbox.send_keys(u"产品类型%s" % crmtime2)
         # 采购模式
@@ -314,37 +347,66 @@ class CrmRecord(object):
         select.send_keys(Keys.ENTER)
         time.sleep(0.5)
         # 设备以及使用情况
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[4]/div/div/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[4]/div/div/input")
         inputbox.clear()
         inputbox.send_keys(u"设备以及使用情况%s" % crmtime2)
         # 是否有仓库
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[5]/div/label[1]/span[1]/span").click()
+        driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[5]/div/label[1]/span[1]/span").click()
         # 仓库所在地
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[6]/div/div/input")
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[6]/div/div/input")
         inputbox.clear()
         inputbox.send_keys(u"仓库所在地%s" % crmtime2)
-        # 竞争对手信息
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[7]/div/div/textarea")
-        inputbox.clear()
-        inputbox.send_keys(u"竞争对手信息%s" % crmtime2)
+
+        # 产品服务偏好、原产地偏好、品牌偏好
+        for num in range(1, 4):
+            num = bytes(num)
+            read_box = driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[7]/div[" + num + "]/div/label").text
+            read_box = read_box.replace(':', '')
+            try:
+                input_text = driver.find_element_by_xpath(
+                    ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[7]/div[" + num + "]/div/div/div/input")
+            except Exception as e:
+                driver.find_element_by_xpath(
+                    ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[7]/div[" + num + "]/div/div/div/textarea").send_keys(
+                    read_box)
+            else:
+                input_text.send_keys(read_box)
 
         # 结算基本信息
         # 会员惯用贸易术语
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[8]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"会员惯用贸易术语%s" % crmtime2)
+        select = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[8]/div/div/div[1]/input")
+        select.click()
+        for iii in range(1, random.randint(2, 10)):
+            select.send_keys(Keys.UP)
+        select.send_keys(Keys.ENTER)
+        time.sleep(0.5)
         # 结算方式
-        inputbox = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[9]/div/div/input")
-        inputbox.clear()
-        inputbox.send_keys(u"结算方式%s" % crmtime2)
+        select = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[9]/div/div/div[1]/input")
+        select.click()
+        for iii in range(1, random.randint(2, 10)):
+            select.send_keys(Keys.UP)
+        select.send_keys(Keys.ENTER)
+        time.sleep(0.5)
         # 是否本地币结算
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[10]/div[1]/div/div/label[2]/span[1]/span").click()
+        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[10]/div[1]/div/div/label[1]/span[1]/span").click()
+
         # 是否与KERUI有采购关系
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[10]/div[2]/div/div/label[2]/span[1]/span").click()
+        driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[10]/div[2]/div/div/label[1]/span[1]/span").click()
+
+        # 入网管理
         # 是否入网
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[11]/div[1]/div/div/label[1]/span[1]/span").click()
+        driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[11]/div/div/div/label[1]/span[1]/span").click()
         # 入网主体
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[11]/div[2]/div/div/label[2]/span[1]/span").click()
+        driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[11]/div[2]/div/div/div/label[2]/span[1]/span").click()
         # 入网时间
         inputbox = driver.find_element_by_xpath(
             ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[12]/div[1]/div/div/div/input")
@@ -361,6 +423,31 @@ class CrmRecord(object):
         inputbox.clear()
         inputbox.send_keys(u"入网产品%s" % crmtime2)
 
+        # 信用评价
+        # 客户信用等级
+        select = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[15]/div[1]/div/div/div/div[1]/input")
+        select.click()
+        for iii in range(1, random.randint(2, 10)):
+            select.send_keys(Keys.UP)
+        select.send_keys(Keys.ENTER)
+        time.sleep(0.5)
+        # 授信类型
+        select = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[16]/div[1]/div/div/div/div[1]/input")
+        select.click()
+        for iii in range(1, random.randint(2, 10)):
+            select.send_keys(Keys.UP)
+        select.send_keys(Keys.ENTER)
+        time.sleep(0.5)
+        # 授信额度
+        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[15]/div[2]/div/div/div/input").send_keys(1000000)
+        # 剩余授信额度
+        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[16]/div[2]/div/div/div/input").send_keys(200000)
+
+
+
+
         # 采购计划
         # # 采购年份
         # driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[15]/div[1]/div/div/input").click()
@@ -368,20 +455,55 @@ class CrmRecord(object):
         # driver.find_element_by_xpath("html/body/div[3]/div[1]/div/div[2]/table[2]/tbody/tr[3]/td[1]/a").click()
         # 采购预算
         inputbox = driver.find_element_by_xpath(
-            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[15]/div[2]/div/div/input")
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[17]/div[2]/div/div/input")
         inputbox.clear()
         inputbox.send_keys(u"采购预算%s" % crmtime2)
         # 采购计划
         inputbox = driver.find_element_by_xpath(
-            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[15]/div[3]/div/div/textarea")
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[17]/div[3]/div/div/textarea")
         inputbox.clear()
         inputbox.send_keys(u"采购计划%s" % crmtime2)
+        # 采购计划
+        upload = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[17]/div[4]/div/div/div/div/div/input")
+        a = random.randint(2, 11)
+        if a % 2:
+            upload.send_keys('d:\\1fortest\word.docx')
+        else:
+            upload.send_keys('d:\\1fortest\pdf.pdf')
+        time.sleep(3)
 
-        # #
-        # inputbox = driver.find_element_by_xpath("")
-        # inputbox.clear()
-        # inputbox.send_keys(u"%s" % crmtime2)
+        # 客户分析报告
+        upload = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[18]/div/div/div/div/div/div/input")
+        a = random.randint(2, 11)
+        if a % 2:
+            upload.send_keys('d:\\1fortest\word.docx')
+        else:
+            upload.send_keys('d:\\1fortest\pdf.pdf')
+        time.sleep(3)
 
+        # 与KERUI/ERUI往来里程碑事件
+        # 时间
+        inputbox = driver.find_element_by_xpath(
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[19]/div[1]/div/div/input")
+        inputbox.clear()
+        inputbox.send_keys(u"2017-01-01")
+
+        for num in range(2, 5):
+            num = bytes(num)
+            read_box = driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[19]/div[" + num + "]/label").text
+            read_box = read_box.replace(':', '')
+            try:
+                input_text = driver.find_element_by_xpath(
+                    ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[19]/div[" + num + "]/div/div/input")
+            except Exception as e:
+                driver.find_element_by_xpath(
+                    ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[2]/div[3]/div/form/div[19]/div[" + num + "]/div/div/textarea").send_keys(
+                    read_box)
+            else:
+                input_text.send_keys(read_box)
 
         # # 电话国家码
         # readcountrycode = driver.find_element_by_xpath(
@@ -399,53 +521,47 @@ class CrmRecord(object):
 
         # 保存
         driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[3]/div[1]/button").click()
-        time.sleep(3)
-        mylogger.info(readcrmrecord)
+        time.sleep(5)
 
     def crminfo(self):
-
         # 重置查询条件
-        time.sleep(2)
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[1]/form/div[4]/button[2]").click()
+        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/form/div[3]/button[2]").click()
         # 输入CRM编码
         driver.find_element_by_xpath(
-            ".//*[@id='app']/div[2]/div[2]/div/div[1]/form/div[1]/div[2]/div/div/div/input").send_keys(crmcode)
+            ".//*[@id='app']/div[2]/div[2]/div/div[2]/form/div[1]/div[3]/div/div/div/input").send_keys(readcrmrecord)
         # 点击查询按钮
-        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[1]/form/div[4]/button[1]").click()
+        driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/form/div[3]/button[1]").click()
+        time.sleep(10)
 
         try:
             driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[3]/table/tbody/tr/td[7]/div/button")
+                ".//*[@id='app']/div[2]/div[2]/div/div[4]/div[1]/div[5]/div[2]/table/tbody/tr/td[26]/div/button[2]/span")
         except Exception as e:
             # mylogger.info(e)
-            mylogger.info(u"CRM编码：" + crmcode + u"不存在！")
+            mylogger.info(u"客户名称：" + readcrmrecord + u"不存在！")
         else:
+            driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[4]/div[1]/div[5]/div[2]/table/tbody/tr/td[26]/div/button[2]/span").click()
             time.sleep(3)
-            # 读取客户编号
-            readcode = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[3]/table/tbody/tr/td[1]/div").text
-            # 读取审核状态
-            readstatus = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[3]/table/tbody/tr/td[5]/div").text
-            # 点击查询按钮
-            driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[1]/div[3]/table/tbody/tr/td[7]/div/button").click()
-            time.sleep(3)
-
-            # 读取公司名称
-            # readcrmcompany = driver.find_element_by_xpath(
-            #     ".//*[@id='app']/div[2]/div[2]/div/form/div[7]/div/div/span").get_attribute("value")
-            readcrmcompany = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/form/div[7]/div/div/span").text
 
             # 读取国家
             readcrmcountry = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/form/div[3]/div/div/span").text
-
+                ".//*[@id='app']/div[2]/div[2]/div/div[1]/div[1]/span[2]").text
+            # 读取客户名称
+            readcrmcompany = driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[1]/div[4]/span[2]").text
+            # 读取CRM客户代码
+            readcrmcode = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[1]/div[6]/span[2]").text
             # 读取年采购额
-            readcrmamount = driver.find_element_by_xpath(
-                ".//*[@id='app']/div[2]/div[2]/div/form/div[10]/div/div/span").text
+            readregistered = driver.find_element_by_xpath(
+                ".//*[@id='app']/div[2]/div[2]/div/div[2]/div[5]/span[2]").text
+            # 读取财务报表
+            readstatement = driver.find_element_by_xpath(".//*[@id='app']/div[2]/div[2]/div/div[2]/div[7]/a").text
 
-            readall = u"|客户编号:" + readcode +"|CRM:" + crmcode + u"|公司名称:" + readcrmcompany + u"|国家:" + readcrmcountry + u"|年采购额:" + u"[" + readcrmamount +u"]" + u" {" + readstatus + u"}"
+            readall = u"|公司名称:" + readcrmcompany + "|CRM:" + readcrmcode + u"|国家:" + readcrmcountry + u"|年采购额:" + u"[" + readregistered + u"]" + u" 财务报表{" + readstatement + u"}"
 
             mylogger.info(readall)
+
 
 url = config.get("bossCRM", "url")
 user = config.get("bossCRM", "user")
@@ -459,7 +575,6 @@ testTimes = testTime + 1
 mylogger.info("Test Time is : %s" % testTime)
 
 crmRecord = CrmRecord()
-
 
 for iii in range(1, testTimes):
     # 进入登录界面
@@ -488,10 +603,7 @@ for iii in range(1, testTimes):
 
     # 退出
     crmRecord.logout()
-
-    mylogger.info("Test Passed= %s" % iii)
-    # print time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), "Test Passed =", i
+    mylogger.info('Test Finished： %s' % iii)
 
 driver.quit()
-
-mylogger.info("All Test Passed")
+mylogger.info("All Test Finished")
