@@ -30,4 +30,5 @@ class NewRfq(object):
         portal.select_text(text="Mali", xpath=".//*[@id='country_02']")
         portal.select_text(text="CAD", xpath=".//*[@id='currency']")
         portal.send_key(key1="Cash", xpath=".//*[@id='quick_inquiry']/div[2]/fieldset[4]/div[2]/div/input")
-        portal.click_button(xpath=".//*[@id='logined_submit']")
+        portal.move(".//*[@id='contact_zipcode']")
+        portal.moveto(xpath="//*[@id='contact_zipcode']", xoffset=80, yoffset=55)

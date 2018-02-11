@@ -96,6 +96,15 @@ class PortalBase(object):
         select.send_keys(Keys.ENTER)
         time.sleep(1)
 
+    def select(self, key1, xpath):
+        select = self.driver.find_element_by_xpath(xpath)
+        select.click()
+        for key1 in range(1, key1):
+            select.send_keys(Keys.DOWN)
+        select.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+
     def select_text(self, text, xpath):
         select_text = self.driver.find_element_by_xpath(xpath)
         Select(select_text).select_by_visible_text(text)
@@ -148,7 +157,7 @@ class PortalBase(object):
         time.sleep(3)
 
     def move(self, xpath):
-        ActionChains(self.driver).move_to_element(self.driver.find_element_by_xpath(xpath)).perform()
+        ActionChains(self.driver).move_to_element(self.driver.find_element_by_xpath(xpath)).click().perform()
 
     def moveto(self, xpath, xoffset, yoffset):
         ActionChains(self.driver).move_to_element_with_offset(

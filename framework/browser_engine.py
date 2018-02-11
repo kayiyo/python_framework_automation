@@ -40,8 +40,8 @@ class BrowserEngine(object):
 
         driver.get(url)
         logger.info("Open url: %s" % url)
-        driver.maximize_window()
-        logger.info("Maximize the current window.")
+        # driver.maximize_window()
+        # logger.info("Maximize the current window.")
         driver.implicitly_wait(10)
         logger.info("Set implicitly wait 10 seconds.")
         return driver
