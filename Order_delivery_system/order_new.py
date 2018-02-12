@@ -87,7 +87,7 @@ class NewOrder(object):
         order.choose(button, search_key, search, move)
 
         button = ".//*[@id='tt']/div[1]/div[2]/div/div[7]/div[1]/div/div[2]/span/a/span"  # 执行分公司
-        search_key = u"沙特公司"
+        search_key = u""
         search = ".//*[@id='dialog']/div/div[1]/div/form/table/tbody/tr/td[1]/span/input[1]"
         move = ".//*[@id='dialog']/div/div[2]/div/div/div/div/div[2]/div[1]/div/table/tbody/tr/td/div/span[1]"
         order.choose(button, search_key, search, move)

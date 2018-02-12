@@ -7,6 +7,8 @@ import os.path
 from Order_delivery_system import order_new
 from Order_delivery_system import project_manager
 from Order_delivery_system import project_execute
+from Order_delivery_system import export_notice
+from Order_delivery_system import purchase_request
 from framework import portal_base
 from framework.logger import Logger
 
@@ -18,7 +20,9 @@ config.read(file_path)
 order = portal_base.PortalBase()
 orderNew = order_new.NewOrder()
 projectManager = project_manager.ProjectManager()
-projectExexute = project_execute.ProjectExecute()
+projectExecute = project_execute.ProjectExecute()
+exportNotice = export_notice.ExportNotice()
+purchaseRequest = purchase_request.PurchaseRequest()
 
 url = config.get("order", "url")        # 读取配置文件
 testtime = int(config.get("order", "testtime"))
@@ -32,7 +36,7 @@ order.load_web(url)  # 浏览器载入url
 for num in range(1, testtime+1):
     # 新建订单
     mylogger.info(u"新建订单执行中")
-    process = "ordernew"
+    process = "orderNew"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
@@ -43,8 +47,8 @@ for num in range(1, testtime+1):
     mylogger.info(u"新建订单执行完毕")
 
     # 项目管理
-    mylogger.info(u"项目管理执行中")
-    process = "projectmanage"
+    mylogger.info(u"管理项目执行中")
+    process = "projectManager"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
@@ -52,19 +56,43 @@ for num in range(1, testtime+1):
     order.login1()  # 登录系统
     projectManager.project_manager()
     order.logout1()  # 退出系统
-    mylogger.info(u"项目管理执行完毕")
+    mylogger.info(u"管理项目执行完毕")
 
     # 项目办理
-    mylogger.info(u"项目办理执行中")
-    process = "projectexecute"
+    mylogger.info(u"执行项目执行中")
+    process = "projectExecute"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    projectExexute.project_execute()
+    projectExecute.project_execute()
     order.logout1()  # 退出系统
-    mylogger.info(u"项目办理执行完毕")
+    mylogger.info(u"执行项目执行完毕")
+
+    # 出口通知
+    mylogger.info(u"出口通知执行中")
+    process = "exportNotice"
+    user = config.get(process, "user")
+    pw = config.get(process, "pw")
+    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
+    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
+    order.login1()  # 登录系统
+    exportNotice.export_notice()
+    order.logout1()  # 退出系统
+    mylogger.info(u"出口通知执行完毕")
+
+    # 采购申请
+    mylogger.info(u"采购申请执行中")
+    process = "purchaseRequest"
+    user = config.get(process, "user")
+    pw = config.get(process, "pw")
+    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
+    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
+    order.login1()  # 登录系统
+    purchaseRequest.purchase_request()
+    order.logout1()  # 退出系统
+    mylogger.info(u"采购申请执行完毕")
 
     mylogger.info("Test Finished : %s" % num)
 

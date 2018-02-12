@@ -8,7 +8,7 @@ from Order_delivery_system import order_new
 from framework import portal_base
 from framework.logger import Logger
 
-project = "ordernew"  # 用于读取配置文件和日志输出控制
+project = "orderNew"  # 用于读取配置文件和日志输出控制
 mylogger = Logger(logger=project + "Log").getlog()
 file_path = os.path.dirname(os.path.abspath('.')) + '/config/config_order.ini'
 config = ConfigParser.ConfigParser()
