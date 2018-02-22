@@ -38,7 +38,7 @@ class PurchaseRequest(object):
                      xpath=".//*/div[1]/div[2]/div/div[3]/div[1]/div/div[2]/span/input[1]")
         order.select(key1=2,  # 是否厂家直接发货
                      xpath=".//*/div[1]/div[2]/div/div[4]/div[1]/div/div[2]/span/input[1]")
-        order.send_key(key1=u"东营",      #交付地点
+        order.send_key(key1=u"烟台",      #交付地点
                        xpath=".//*/div[1]/div[2]/div/div[4]/div[2]/div/div[2]/span/input[1]")
         order.send_key(key1=u"客户文件要求无",  # 客户文件要求
                        xpath=".//*/div[1]/div[2]/div/div[5]/div/div/div[2]/span/input[1]")

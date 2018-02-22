@@ -104,7 +104,6 @@ class PortalBase(object):
         select.send_keys(Keys.ENTER)
         time.sleep(1)
 
-
     def select_text(self, text, xpath):
         select_text = self.driver.find_element_by_xpath(xpath)
         Select(select_text).select_by_visible_text(text)
