@@ -66,7 +66,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"新建订单执行完毕")
 
-    # 项目管理
+    # 管理项目
     mylogger.info(u"管理项目执行中")
     process = "projectManager"
     user = config.get(process, "user")
@@ -78,7 +78,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"管理项目执行完毕")
 
-    # 项目办理
+    # 执行项目
     mylogger.info(u"执行项目执行中")
     process = "projectExecute"
     user = config.get(process, "user")
@@ -114,6 +114,18 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"采购申请执行完毕")
 
+    # 采购订单
+    mylogger.info(u"采购订单执行中")
+    process = "purchaseOrder"
+    user = config.get(process, "user")
+    pw = config.get(process, "pw")
+    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
+    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
+    order.login1()  # 登录系统
+    purchaseOrder.purchase_order()
+    order.logout1()  # 退出系统
+    mylogger.info(u"采购订单执行完毕")
+
     # 新增报检单
     mylogger.info(u"新增报检单执行中")
     process = "declarationNew"
@@ -126,7 +138,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"新增报检单执行完毕")
 
-    # 采购申请
+    # 入库质检
     mylogger.info(u"入库质检执行中")
     process = "checkIn"
     user = config.get(process, "user")

@@ -20,7 +20,7 @@ url = config.get(project, "url")        # 读取配置文件
 user = config.get(project, "user")
 pw = config.get(project, "pw")
 # code = config.get(project, "code")
-# testtime = int(config.get(project, "testtime"))
+testtime = int(config.get("order", "testtime"))
 
 mylogger.info("The test server url is: %s" % url)
 mylogger.info("TestTask : " + project + "new")
