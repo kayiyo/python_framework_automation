@@ -54,8 +54,7 @@ mylogger.info("Test Time : %s" % testtime)
 order.load_web(url)  # 浏览器载入url
 
 for num in range(1, testtime+1):
-    # 新建订单
-    mylogger.info(u"新建订单执行中")
+    mylogger.info(u"新建订单执行中")   # 1新建订单
     process = "orderNew"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -66,8 +65,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"新建订单执行完毕")
 
-    # 管理项目
-    mylogger.info(u"管理项目执行中")
+    mylogger.info(u"管理项目执行中")   # 2管理项目
     process = "projectManager"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -78,8 +76,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"管理项目执行完毕")
 
-    # 执行项目
-    mylogger.info(u"执行项目执行中")
+    mylogger.info(u"执行项目执行中")   # 3执行项目
     process = "projectExecute"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -90,8 +87,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"执行项目执行完毕")
 
-    # 出口通知
-    mylogger.info(u"出口通知执行中")
+    mylogger.info(u"出口通知执行中")   # 4出口通知
     process = "exportNotice"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -102,8 +98,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"出口通知执行完毕")
 
-    # 采购申请
-    mylogger.info(u"采购申请执行中")
+    mylogger.info(u"采购申请执行中")   # 5采购申请
     process = "purchaseRequest"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -114,8 +109,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"采购申请执行完毕")
 
-    # 采购订单
-    mylogger.info(u"采购订单执行中")
+    mylogger.info(u"采购订单执行中")   # 6采购订单
     process = "purchaseOrder"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -126,8 +120,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"采购订单执行完毕")
 
-    # 新增报检单
-    mylogger.info(u"新增报检单执行中")
+    mylogger.info(u"新增报检单执行中")  # 7新增报检单
     process = "declarationNew"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -138,8 +131,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"新增报检单执行完毕")
 
-    # 入库质检
-    mylogger.info(u"入库质检执行中")
+    mylogger.info(u"入库质检执行中")   # 8入库质检
     process = "checkIn"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -150,8 +142,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"入库质检执行完毕")
 
-    # 办理入库
-    mylogger.info(u"办理入库执行中")
+    mylogger.info(u"办理入库执行中")   # 9办理入库
     process = "operationIn"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -162,8 +153,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"办理入库执行完毕")
 
-    # 新建看货通知
-    mylogger.info(u"新建看货通知执行中")
+    mylogger.info(u"新建看货通知执行中") # 10新建看货通知
     process = "shipmentNotice"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -174,8 +164,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"新建看货通知执行完毕")
 
-    # 提交质检
-    mylogger.info(u"提交质检执行中")
+    mylogger.info(u"提交质检执行中")   # 11提交质检
     process = "checkSubmit"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -186,8 +175,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"提交质检执行完毕")
 
-    # 出库质检
-    mylogger.info(u"出库质检执行中")
+    mylogger.info(u"出库质检执行中")   # 12出库质检
     process = "checkOut"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -198,8 +186,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"出库质检执行完毕")
 
-    # 办理出库
-    mylogger.info(u"办理出库执行中")
+    mylogger.info(u"办理出库执行中")   # 13办理出库
     process = "operationOut"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -210,8 +197,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"办理出库执行完毕")
 
-    # 物流跟踪
-    mylogger.info(u"物流跟踪执行中")
+    mylogger.info(u"物流跟踪执行中")   # 14物流跟踪
     process = "logisticsTrack"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
@@ -222,8 +208,7 @@ for num in range(1, testtime+1):
     order.logout1()  # 退出系统
     mylogger.info(u"物流跟踪执行完毕")
 
-    # 财务收款
-    mylogger.info(u"财务收款执行中")
+    mylogger.info(u"财务收款执行中")   # 15财务收款
     process = "financialPayment"
     user = config.get(process, "user")
     pw = config.get(process, "pw")
