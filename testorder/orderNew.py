@@ -19,12 +19,12 @@ orderNew = order_new.NewOrder()
 url = config.get(project, "url")        # 读取配置文件
 user = config.get(project, "user")
 pw = config.get(project, "pw")
-code = config.get(project, "code")
-testtime = int(config.get(project, "testtime"))
+# code = config.get(project, "code")
+# testtime = int(config.get(project, "testtime"))
 
 mylogger.info("The test server url is: %s" % url)
 mylogger.info("TestTask : " + project)
-mylogger.info("Test Time : %s" % testtime)
+# mylogger.info("Test Time : %s" % testtime)
 
 order.load_web(url)  # 浏览器载入url
 
