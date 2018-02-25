@@ -13,10 +13,10 @@ class NewOrder(object):
     def new_order(self):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_po = "PO" + order_time + "ddgl"                                # PO号
-        order_kjxy = "KJXY" + order_time + "ddgl"                            # 框架协议号
-        order_xsht = "XSHT" + order_time + "ddgl"                            # 销售合同号
-        order_hwxsht = "HWXSHT" + order_time + "ddgl"                        # 海外销售合同号
-        order_wlbjd = "WLBJD" + order_time + "ddgl"                          # 物流报价单号
+        order_kjxy = "KJXYH" + order_time + "ddgl"                            # 框架协议号
+        order_xsht = "XSHTH" + order_time + "ddgl"                            # 销售合同号
+        order_hwxsht = "HWXSHTH" + order_time + "ddgl"                        # 海外销售合同号
+        order_wlbjd = "WLBJDH" + order_time + "ddgl"                          # 物流报价单号
         # order.click_button(xpath=".//*[@id='sider']/div/div[1]/div[1]/div[1]")      # 订单管理
         order.click_button(xpath=".//*[@id='sider']/div/div[1]/div[2]/ul/li/a")     # 订单列表
         time.sleep(3)

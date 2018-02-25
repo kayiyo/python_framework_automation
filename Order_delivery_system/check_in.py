@@ -12,7 +12,7 @@ order = portal_base.PortalBase()
 class CheckIn(object):
     def check_in(self, order_xsht):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
-        order_ncr = "NCR" + order_time + "ddgl"                                # 采购合同号
+        order_ncr = "NCRBH" + order_time + "ddgl"                                # NCR编号
 
         # order.click_button(xpath=".//*[@id='sider']/div/div[1]/div[1]/div[1]")      # 订单管理
         order.link_text(u"入库质检")  # 品控管理入库质检列表
