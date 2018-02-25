@@ -10,14 +10,15 @@ order = portal_base.PortalBase()
 
 
 class CheckSubmit(object):
-    def check_submit(self):
+    def check_submit(self, order_xsht):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
 
         # order.click_button(xpath=".//*[@id='sider']/div/div[1]/div[1]/div[1]")      # 订单管理
         order.link_text(u"出库管理")  # 仓库管理入库管理列表
         time.sleep(5)
         # 项目号搜索
-        order.send_key(key1="ddgl", xpath=".//*[@id='出库管理']/div/div[1]/div/form/table/tbody/tr[1]/td[3]/span/input[1]")
+        order.send_key(key1=order_xsht,
+                       xpath=".//*[@id='出库管理']/div/div[1]/div/form/table/tbody/tr[1]/td[2]/span/input[1]")
         # 出库状态未质检搜索
         order.select(key1=2, xpath=".//*[@id='出库管理']/div/div[1]/div/form/table/tbody/tr[3]/td[1]/span/input[1]")
         order.link_text(u"搜")  # 搜索

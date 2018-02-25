@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class FinancialPayment(object):
-    def financial_payment(self):
+    def financial_payment(self, order_xsht):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_cghth = "XZBJDBZ" + order_time + "-ddgl"                                # 新增报检单备注
 
@@ -18,7 +18,7 @@ class FinancialPayment(object):
         order.link_text(u"收款管理")  # 财务管理收款管理列表
         time.sleep(5)
         # 销售合同号搜索
-        order.send_key(key1="XSHT",
+        order.send_key(key1=order_xsht,
                        xpath=".//*[@id='收款管理']/div/div[1]/div/form/table/tbody/tr[1]/td[1]/span/input[1]")
         # 跟踪状态待执行搜索
         order.select(key1=2,

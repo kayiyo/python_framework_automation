@@ -10,15 +10,16 @@ order = portal_base.PortalBase()
 
 
 class CheckIn(object):
-    def check_in(self):
+    def check_in(self, order_xsht):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_ncr = "NCR" + order_time + "ddgl"                                # 采购合同号
 
         # order.click_button(xpath=".//*[@id='sider']/div/div[1]/div[1]/div[1]")      # 订单管理
         order.link_text(u"入库质检")  # 品控管理入库质检列表
         time.sleep(5)
-        # 采购合同号搜索
-        order.send_key(key1="CGHTH", xpath=".//*[@id='入库质检']/div/div[1]/div/form/table/tbody/tr[1]/td[3]/span/input[1]")
+        # 销售合同号搜索
+        order.send_key(key1=order_xsht,
+                       xpath=".//*[@id='入库质检']/div/div[1]/div/form/table/tbody/tr[1]/td[2]/span/input[1]")
         # 采购状态进行中搜索
         order.select(key1=2, xpath=".//*[@id='入库质检']/div/div[1]/div/form/table/tbody/tr[2]/td[4]/span/input[1]")
         order.link_text(u"搜")  # 搜索

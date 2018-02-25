@@ -10,16 +10,15 @@ order = portal_base.PortalBase()
 
 
 class ProjectExecute(object):
-    def project_execute(self):
+    def project_execute(self, order_xsht):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
-        order_xmmc = "XMMC" + order_time + "ddgl"                           # 项目名称
         order_xmgl_bz = "XMGLBZ" + order_time + "ddgl-XMJL"                      # 项目备注
 
         order.click_button(".//*[@id='sider']/div/div[2]/div[1]/div[1]")       # 项目管理
         order.link_text(u"项目列表")        # 订单列表
         time.sleep(5)
-        order.send_key(key1="XMMC",
-                       xpath=".//*[@id='project_list']/div[1]/div[2]/div/div[2]/span/input[1]")     # 项目名称搜索
+        order.send_key(key1=order_xsht,
+                       xpath=".//*[@id='project_list']/div[1]/div[1]/div/div[2]/span/input[1]")     # 销售合同号搜索
         order.select(key1=5,
                      xpath=".//*[@id='project_list']/div[3]/div[1]/div/div[2]/span/input[1]")     # 项目状态未执行搜索
         order.link_text(u"搜索")      # 搜索
@@ -66,13 +65,3 @@ class ProjectExecute(object):
         time.sleep(3)
         order.link_text(u"确定")
         time.sleep(3)
-
-        # for num in range(1, 2000):
-        #     try:
-        #         order.click_button(
-        #             ".//*[@id='update_project_*']/div[1]/div[2]/div/div[1]/div[1]/div/div[2]/span/input[1]")
-        #     except Exception as e:
-        #         pass
-        #     else:
-        #         xpath = ".//*/div[1]/div[2]/div/div[1]/div[1]/div/div[2]/span/input[1]"
-        #         order.click_button(xpath)  # 项目开始时间

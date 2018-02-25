@@ -61,7 +61,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    orderNew.new_order()
+    order_xsht = orderNew.new_order()
     order.logout1()  # 退出系统
     mylogger.info(u"新建订单执行完毕")
 
@@ -72,7 +72,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    projectManager.project_manager()
+    projectManager.project_manager(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"管理项目执行完毕")
 
@@ -83,7 +83,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    projectExecute.project_execute()
+    projectExecute.project_execute(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"执行项目执行完毕")
 
@@ -94,7 +94,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    exportNotice.export_notice()
+    exportNotice.export_notice(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"出口通知执行完毕")
 
@@ -105,7 +105,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    purchaseRequest.purchase_request()
+    order_xmh = purchaseRequest.purchase_request(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"采购申请执行完毕")
 
@@ -116,7 +116,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    purchaseOrder.purchase_order()
+    purchaseOrder.purchase_order(order_xmh)
     order.logout1()  # 退出系统
     mylogger.info(u"采购订单执行完毕")
 
@@ -127,7 +127,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    declarationNew.declaration_new()
+    declarationNew.declaration_new(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"新增报检单执行完毕")
 
@@ -138,7 +138,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    checkIn.check_in()
+    checkIn.check_in(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"入库质检执行完毕")
 
@@ -149,7 +149,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    operationIn.operation_in()
+    operationIn.operation_in(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"办理入库执行完毕")
 
@@ -171,7 +171,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    checkSubmit.check_submit()
+    checkSubmit.check_submit(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"提交质检执行完毕")
 
@@ -182,7 +182,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    checkOut.check_out()
+    checkOut.check_out(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"出库质检执行完毕")
 
@@ -193,7 +193,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    operationOut.operation_out()
+    operationOut.operation_out(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"办理出库执行完毕")
 
@@ -204,7 +204,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    logisticsTrack.logistics_track()
+    logisticsTrack.logistics_track(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"物流跟踪执行完毕")
 
@@ -215,7 +215,7 @@ for num in range(1, testtime+1):
     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
     order.login1()  # 登录系统
-    financialPayment.financial_payment()
+    financialPayment.financial_payment(order_xsht)
     order.logout1()  # 退出系统
     mylogger.info(u"财务收款执行完毕")
 

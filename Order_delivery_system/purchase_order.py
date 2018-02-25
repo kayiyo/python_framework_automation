@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class PurchaseOrder(object):
-    def purchase_order(self):
+    def purchase_order(self, order_xmh):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_cghth = "CGHTH" + order_time + "ddgl"                                # 采购合同号
 
@@ -42,7 +42,7 @@ class PurchaseOrder(object):
         # 商品信息
 
         button = ".//*/div[3]/div[2]/div[1]/div[1]/div/div[2]/span/a/span"
-        search_key = "ddgl"
+        search_key = order_xmh
         search = ".//*[@id='dialog']/div/div[1]/div/form/table/tbody/tr/td[1]/span/input[1]"
         move = ".//*[@id='dialog']/div/div[2]/div/div/div/div/div[2]/div[1]/div/table/tbody/tr/td[1]/div/span[1]"
         order.choose(button, search_key, search, move, wait=20)  # 项目号

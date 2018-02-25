@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 #  coding=utf-8
-# order新建基类  __author__ = 'kayiyo'
+# order新建订单  __author__ = 'kayiyo'
 
 from framework import portal_base
 import time
@@ -183,3 +183,4 @@ class NewOrder(object):
         time.sleep(3)
         order.link_text(u"确定")
         time.sleep(3)
+        return order_xsht

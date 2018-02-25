@@ -10,15 +10,16 @@ order = portal_base.PortalBase()
 
 
 class DeclarationNew(object):
-    def declaration_new(self):
+    def declaration_new(self, order_xsht):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_cghth = "XZBJDBZ" + order_time + "-ddgl"                                # 新增报检单备注
 
         # order.click_button(xpath=".//*[@id='sider']/div/div[1]/div[1]/div[1]")      # 订单管理
         order.link_text(u"采购订单列表")  # 采购订单列表
         time.sleep(5)
-        # 采购合同号搜索
-        order.send_key(key1="CGHTH", xpath=".//*[@id='purchase_list']/div[1]/div[1]/div/div[2]/span/input[1]")
+        # 销售合同号搜索
+        order.send_key(key1=order_xsht,
+                       xpath=".//*[@id='purchase_list']/div[2]/div[1]/div/div[2]/span/input[1]")
         # 采购状态进行中搜索
         order.select(key1=3, xpath=".//*[@id='purchase_list']/div[2]/div[4]/div/div[2]/span/input[1]")
         order.link_text(u"搜索")  # 搜索

@@ -10,14 +10,15 @@ order = portal_base.PortalBase()
 
 
 class CheckOut(object):
-    def check_out(self):
+    def check_out(self, order_xsht):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
 
         # order.click_button(xpath=".//*[@id='sider']/div/div[1]/div[1]/div[1]")      # 订单管理
         order.link_text(u"出库质检")  # 品控管理出库质检列表
         time.sleep(5)
-        # 采购合同号搜索
-        order.send_key(key1="XMH", xpath=".//*[@id='出库质检']/div/div[1]/div/form/table/tbody/tr[1]/td[3]/span/input[1]")
+        # 销售合同号搜索
+        order.send_key(key1=order_xsht,
+                       xpath=".//*[@id='出库质检']/div/div[1]/div/form/table/tbody/tr[1]/td[2]/span/input[1]")
         order.link_text(u"搜")  # 搜索
         time.sleep(5)
         order.link_text(u"办理")
