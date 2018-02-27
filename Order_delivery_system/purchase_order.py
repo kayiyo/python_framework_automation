@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class PurchaseOrder(object):
-    def purchase_order(self, order_xmh):
+    def purchase_order(self, order_xmh="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_cghth = "CGHTH" + order_time + "ddgl"                                # 采购合同号
 
@@ -45,7 +45,7 @@ class PurchaseOrder(object):
         search_key = order_xmh
         search = ".//*[@id='dialog']/div/div[1]/div/form/table/tbody/tr/td[1]/span/input[1]"
         move = ".//*[@id='dialog']/div/div[2]/div/div/div/div/div[2]/div[1]/div/table/tbody/tr/td[1]/div/span[1]"
-        order.choose(button, search_key, search, move, wait=20)  # 项目号
+        order.choose(button, search_key, search, move, wait=10)  # 项目号
 
         button = ".//*/div[3]/div[2]/div[1]/div[2]/div/div[2]/span/a/span"
         search_key = "20180120000005"
@@ -72,6 +72,14 @@ class PurchaseOrder(object):
         search = ".//*[@id='dialog']/div/div[1]/div/form/table/tbody/tr/td[1]/span/input[1]"
         move = ".//*[@id='dialog']/div/div[2]/div/div/div/div/div[2]/div[1]/div/table/tbody/tr/td/div/span[1]"
         order.choose(button, search_key, search, move)  # 下发部门
+
+        # 其他信息/备注
+        order.send_key(key1=u"采购执行部-备注-ddgl",
+                       xpath=".//*/div[5]/div[2]/div/div/div/div[2]/span/textarea")
+
+        # # 附件
+        # order.upload_file(file1="D:\\1fortest\\Order\\6purchaseOrder.pdf",
+        # xpath=".//*/div[7]/div[2]/table/tbody/tr/td[1]/p[2]/span")
 
         time.sleep(5)
         order.link_text(u"提交")

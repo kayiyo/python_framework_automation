@@ -54,170 +54,65 @@ mylogger.info("Test Time : %s" % testtime)
 order.load_web(url)  # 浏览器载入url
 
 for num in range(1, testtime+1):
-    mylogger.info(u"新建订单执行中")   # 1新建订单
-    process = "orderNew"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    order_xsht = orderNew.new_order()
-    order.logout1()  # 退出系统
-    mylogger.info(u"新建订单执行完毕")
 
-    mylogger.info(u"管理项目执行中")   # 2管理项目
-    process = "projectManager"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    projectManager.project_manager(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"管理项目执行完毕")
-
-    mylogger.info(u"执行项目执行中")   # 3执行项目
-    process = "projectExecute"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    projectExecute.project_execute(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"执行项目执行完毕")
-
-    mylogger.info(u"出口通知执行中")   # 4出口通知
-    process = "exportNotice"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    exportNotice.export_notice(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"出口通知执行完毕")
-
-    mylogger.info(u"采购申请执行中")   # 5采购申请
-    process = "purchaseRequest"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    order_xmh = purchaseRequest.purchase_request(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"采购申请执行完毕")
-
-    mylogger.info(u"采购订单执行中")   # 6采购订单
-    process = "purchaseOrder"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    purchaseOrder.purchase_order(order_xmh)
-    order.logout1()  # 退出系统
-    mylogger.info(u"采购订单执行完毕")
-
-    mylogger.info(u"新增报检单执行中")  # 7新增报检单
-    process = "declarationNew"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    declarationNew.declaration_new(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"新增报检单执行完毕")
-
-    mylogger.info(u"入库质检执行中")   # 8入库质检
-    process = "checkIn"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    checkIn.check_in(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"入库质检执行完毕")
-
-    mylogger.info(u"办理入库执行中")   # 9办理入库
-    process = "operationIn"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    operationIn.operation_in(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"办理入库执行完毕")
-
-    mylogger.info(u"新建看货通知执行中") # 10新建看货通知
-    process = "shipmentNotice"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    shipmentNotice.shipment_notice()
-    order.logout1()  # 退出系统
-    mylogger.info(u"新建看货通知执行完毕")
-
-    mylogger.info(u"提交质检执行中")   # 11提交质检
-    process = "checkSubmit"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    checkSubmit.check_submit(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"提交质检执行完毕")
-
-    mylogger.info(u"出库质检执行中")   # 12出库质检
-    process = "checkOut"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    checkOut.check_out(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"出库质检执行完毕")
-
-    mylogger.info(u"办理出库执行中")   # 13办理出库
-    process = "operationOut"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    operationOut.operation_out(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"办理出库执行完毕")
-
-    mylogger.info(u"物流跟踪执行中")   # 14物流跟踪
-    process = "logisticsTrack"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    logisticsTrack.logistics_track(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"物流跟踪执行完毕")
-
-    mylogger.info(u"财务收款执行中")   # 15财务收款
-    process = "financialPayment"
-    user = config.get(process, "user")
-    pw = config.get(process, "pw")
-    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-    order.login1()  # 登录系统
-    financialPayment.financial_payment(order_xsht)
-    order.logout1()  # 退出系统
-    mylogger.info(u"财务收款执行完毕")
+    order_process_list = ['orderNew',
+                     'projectManager',
+                     'projectExecute',
+                     'exportNotice',
+                     'purchaseRequest',
+                     'purchaseOrder',
+                     'declarationNew',
+                     'checkIn',
+                     'operationIn',
+                     'shipmentNotice',
+                     'checkSubmit',
+                     'checkOut',
+                     'operationOut',
+                     'logisticsTrack',
+                     'financialPayment',
+                     ]
+    for order_process in order_process_list:
+        mylogger.info(order_process + " is executing. Please wait...")
+        user = config.get(order_process, "user")
+        pw = config.get(order_process, "pw")
+        order.input_username(user, xpath=".//*[@id='username']")  # 用户名
+        order.input_password(pw, xpath=".//*[@id='password']")  # 密码
+        order.login1()  # 登录系统
+        if order_process == 'orderNew':                     # 1新建订单
+            order_xsht = orderNew.new_order()
+            mylogger.info("OrderXSHT NO:" + order_xsht)
+        elif order_process == 'projectManager':             # 2管理项目
+            projectManager.project_manager(order_xsht)
+        elif order_process == 'projectExecute':             # 3执行项目
+            projectExecute.project_execute(order_xsht)
+        elif order_process == 'exportNotice':               # 4出口通知
+            exportNotice.export_notice(order_xsht)
+        elif order_process == 'purchaseRequest':            # 5采购申请
+            order_xmh = purchaseRequest.purchase_request(order_xsht)
+            mylogger.info("OrderXMH NO:" + order_xmh)
+        elif order_process == 'purchaseOrder':              # 6采购订单
+            order_xmh = order_xmh
+            purchaseOrder.purchase_order(order_xmh)
+        elif order_process == 'declarationNew':             # 7新增报检单
+            declarationNew.declaration_new(order_xsht)
+        elif order_process == 'checkIn':                    # 8入库质检
+            checkIn.check_in(order_xsht)
+        elif order_process == 'operationIn':                # 9办理入库
+            operationIn.operation_in(order_xsht)
+        elif order_process == 'shipmentNotice':             # 10新建看货通知
+            shipmentNotice.shipment_notice()
+        elif order_process == 'checkSubmit':                # 11提交质检
+            checkSubmit.check_submit(order_xsht)
+        elif order_process == 'checkOut':                   # 12出库质检
+            checkOut.check_out(order_xsht)
+        elif order_process == 'operationOut':               # 13办理出库
+            operationOut.operation_out(order_xsht)
+        elif order_process == 'logisticsTrack':             # 14物流跟踪
+            logisticsTrack.logistics_track(order_xsht)
+        elif order_process == 'financialPayment':           # 15财务收款
+            financialPayment.financial_payment(order_xsht)
+        order.logout1()  # 退出系统
+        mylogger.info(order_process + " completed")
 
     mylogger.info("Test Finished : %s" % num)
 

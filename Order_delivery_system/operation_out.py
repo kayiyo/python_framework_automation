@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class OperationOut(object):
-    def operation_out(self, order_xsht):
+    def operation_out(self, order_xsht="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
 
         # order.click_button(xpath=".//*[@id='sider']/div/div[1]/div[1]/div[1]")      # 订单管理
@@ -25,6 +25,10 @@ class OperationOut(object):
         time.sleep(5)
         order.link_text(u"办理")
         time.sleep(5)
+
+        # # 附件
+        # order.upload_file(file1="D:\\1fortest\\Order\\13operationOut.pdf",
+        #                   xpath=".//*/div[2]/div[3]/div/div/form/div[16]/div[2]/table/tbody/tr/td[1]/p[2]/span")
 
         order.link_text(u"确认出库")
         time.sleep(3)

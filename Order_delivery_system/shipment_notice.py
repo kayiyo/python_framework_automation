@@ -36,6 +36,18 @@ class ShipmentNotice(object):
         order.select(key1=3, xpath=".//*[@id='logistics_deliveryAdd']/div/form/div[1]/div[2]/table/tbody/tr[4]/td[2]/select")
         time.sleep(3)
 
+        # 备货信息
+        # 备货要求
+        order.send_key(key1=u"备货要求-ddgl",
+        xpath=".//*[@id='logistics_deliveryAdd']/div/form/div[5]/div[2]/div/table/tbody/tr[1]/td/span/textarea")
+        # 包装要求
+        order.send_key(key1=u"包装要求-ddgl",
+        xpath=".//*[@id='logistics_deliveryAdd']/div/form/div[5]/div[2]/div/table/tbody/tr[2]/td/span/textarea")
+
+        # # 附件信息
+        # order.upload_file(file1="D:\\1fortest\\Order\\10shipmentNotice.pdf",
+        # xpath=".//*[@id='logistics_deliveryAdd']/div/form/div[7]/div[2]/table/tbody/tr[2]/td[1]/p[2]/span")
+
         order.link_text(u"提")
         time.sleep(3)
         order.link_text(u"确定")

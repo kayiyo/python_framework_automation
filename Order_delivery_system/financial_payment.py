@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class FinancialPayment(object):
-    def financial_payment(self, order_xsht):
+    def financial_payment(self, order_xsht="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_cghth = "XZBJDBZ" + order_time + "-ddgl"                                # 新增报检单备注
 
@@ -69,8 +69,6 @@ class FinancialPayment(object):
         order.send_key(key1="50000", xpath=".//*[@id='ff']/table/tbody/tr[5]/td/span/input[1]")
         order.link_text(u"确定")
         time.sleep(3)
-
-
 
         order.link_text(u"确认全部收款完成")
         time.sleep(3)

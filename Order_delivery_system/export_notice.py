@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class ExportNotice(object):
-    def export_notice(self, order_xsht):
+    def export_notice(self, order_xsht="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
 
         # order.click_button(".//*[@id='sider']/div/div[2]/div[1]/div[1]")       # 项目管理
@@ -43,9 +43,14 @@ class ExportNotice(object):
         order.send_key(key1 = int(read_num),
                        xpath=".//*[@id='datagrid-row-r4-2-0']/td[9]/div/span/input[1]")
 
-        # # 备注信息
-        # order.send_key(key1=order_xmgl_bz,
+        # 备注信息
+        # order.send_key1(key1=u"备注" + order_time + "ddgl",
         #                xpath=".//*/div[6]/div[2]/div/div/div/div[2]/span/textarea")
+
+        # # 附件
+        # order.upload_file(file1="D:\\1fortest\\Order\\4exportNotice.pdf",
+        #                   xpath=".//*/div[8]/div[2]/table/tbody/tr/td[1]/p[2]/span")
+
         time.sleep(1)
         order.link_text(u"提交物流")
         time.sleep(3)

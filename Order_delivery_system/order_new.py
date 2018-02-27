@@ -176,6 +176,11 @@ class NewOrder(object):
         order.send_key(key1=u"客户及项目背景描述",
                        xpath=".//*[@id='tt']/div[7]/div[2]/div[2]/div/div/div[2]/span/textarea")  # 客户及项目背景描述
 
+        # # 附件
+        # order.upload_file(file1="D:\\1fortest\\Order\\1orderNew.pdf",
+        #                   xpath=".//*[@id='tt']/div[9]/div[2]/table/tbody/tr/td[1]/p[2]/span")
+        # order.upload_file(link_text=u"传", file="D:\\1fortest\\Order\\1orderNew.pdf")
+
         time.sleep(5)
         order.link_text(u"提交立项")
         time.sleep(3)

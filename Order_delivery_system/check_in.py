@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class CheckIn(object):
-    def check_in(self, order_xsht):
+    def check_in(self, order_xsht="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_ncr = "NCRBH" + order_time + "ddgl"                                # NCR编号
 
@@ -51,6 +51,14 @@ class CheckIn(object):
         # 抽样数
         order.send_key(key1="30",
                        xpath=".//*/td[10]/div/table/tbody/tr/td/span/input[1]")
+
+        # 其他信息备注
+        order.send_key(key1=u"备注-品控部-ddgl",
+        xpath=".//*/div[2]/div[3]/div/div/form/div[5]/div[2]/div/table/tbody/tr/td/span/textarea")
+
+        # # 附件
+        # order.upload_file(file1="D:\\1fortest\\Order\\8checkIn.pdf",
+        #                   xpath=".//*/div[2]/div[3]/div/div/form/div[7]/div[2]/table/tbody/tr/td[1]/p[2]/span")
 
         time.sleep(5)
         order.link_text(u"提")

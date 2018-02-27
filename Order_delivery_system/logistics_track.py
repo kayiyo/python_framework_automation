@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class LogisticsTrack(object):
-    def logistics_track(self, order_xsht):
+    def logistics_track(self, order_xsht="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_wlfph = "WLFPH" + order_time + "-ddgl"                                # 新增报检单备注
 
@@ -65,9 +65,13 @@ class LogisticsTrack(object):
         order.send_key(key1=u"动态描述-ddgl",
          xpath=".//*[@id='mainTabs']/div[2]/div[3]/div/div/form/div[5]/div[2]/div/table/tbody/tr[5]/td/span/textarea")
 
-        # 物流发票号
+        # 备注
         order.send_key(key1=u"备注-ddgl",
          xpath=".//*[@id='mainTabs']/div[2]/div[3]/div/div/form/div[5]/div[2]/div/table/tbody/tr[6]/td/span/textarea")
+
+        # # 附件
+        # order.upload_file(file1="D:\\1fortest\\Order\\14logisticsTrack.pdf",
+        #                   xpath=".//*/div[2]/div[3]/div/div/form/div[7]/div[2]/table/tbody/tr/td[1]/p[2]/span")
 
         order.link_text(u"项目完结")
         time.sleep(3)

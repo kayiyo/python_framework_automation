@@ -28,17 +28,17 @@ mylogger.info("TestTask : " + project + "new")
 
 order.load_web(url)  # 浏览器载入url
 
-# for num in range(1, 30):
-#     order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-#     order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-#     order.login1()  # 登录系统
-#     shipmentNotice.shipment_notice()
-#     order.logout1()  # 退出系统
-#     mylogger.info("Test Finished : %s" % num)
-# order.quit_web()  # 退出浏览器
-# mylogger.info("All Test Done!")
+for num in range(1, 30):
+    order.input_username(user, xpath=".//*[@id='username']")  # 用户名
+    order.input_password(pw, xpath=".//*[@id='password']")  # 密码
+    order.login1()  # 登录系统
+    shipmentNotice.shipment_notice()
+    order.logout1()  # 退出系统
+    mylogger.info("Test Finished : %s" % num)
+order.quit_web()  # 退出浏览器
+mylogger.info("All Test Done!")
 
-order.input_username(user, xpath=".//*[@id='username']")  # 用户名
-order.input_password(pw, xpath=".//*[@id='password']")  # 密码
-order.login1()  # 登录系统
-shipmentNotice.shipment_notice()
+# order.input_username(user, xpath=".//*[@id='username']")  # 用户名
+# order.input_password(pw, xpath=".//*[@id='password']")  # 密码
+# order.login1()  # 登录系统
+# shipmentNotice.shipment_notice()

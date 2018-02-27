@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class OperationIn(object):
-    def operation_in(self, order_xsht):
+    def operation_in(self, order_xsht="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
 
         # order.click_button(xpath=".//*[@id='sider']/div/div[1]/div[1]/div[1]")      # 订单管理
@@ -32,6 +32,14 @@ class OperationIn(object):
         # 货物存放地
         order.send_key(key1=u"青岛",
                        xpath=".//*/td[18]/div/table/tbody/tr/td/span/input[1]")
+
+        # 其他信息备注
+        order.send_key(key1=u"备注-仓储物流部-ddgl",
+                       xpath=".//*/div[2]/div[3]/div/div/form/div[5]/div[2]/div/table/tbody/tr/td/span/textarea")
+
+        # # 附件
+        # order.upload_file(file1="D:\\1fortest\\Order\\9operationIn.pdf",
+        #                   xpath=".//*/div[2]/div[3]/div/div/form/div[7]/div[2]/table/tbody/tr/td[1]/p[2]/span")
 
         time.sleep(5)
         order.link_text(u"确认入库")

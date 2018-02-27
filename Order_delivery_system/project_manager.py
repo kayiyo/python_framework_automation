@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class ProjectManager(object):
-    def project_manager(self, order_xsht):
+    def project_manager(self, order_xsht="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_xmmc = "XMMC" + order_time + "ddgl"                           # 项目名称
         order_xmgl_bz = "XMGLBZ" + order_time + "ddgl"                      # 项目备注

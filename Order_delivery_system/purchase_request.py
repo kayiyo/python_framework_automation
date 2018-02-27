@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class PurchaseRequest(object):
-    def purchase_request(self, order_xsht):
+    def purchase_request(self, order_xsht="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_xmh = "XMH" + order_time + "ddgl"                           # 项目号
         # order.click_button(".//*[@id='sider']/div/div[2]/div[1]/div[1]")       # 项目管理
@@ -44,6 +44,14 @@ class PurchaseRequest(object):
         # 商品信息
         order.select(key1=2,  # 产品分类
                      xpath=".//*/td[2]/div/span/input[1]")
+
+        # 其他信息
+        order.send_key(key1=u"备注-商务技术-ddgl",
+                       xpath=".//*/div[5]/div[2]/div/div/div/div[2]/span/textarea")
+
+        # # 附件
+        # order.upload_file(file1="D:\\1fortest\\Order\\5purchaseRequest.pdf",
+        #                   xpath=".//*/div[7]/div[2]/table/tbody/tr/td[1]/p[2]/span")
 
         time.sleep(1)
         order.link_text(u"提交")

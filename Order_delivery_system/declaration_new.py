@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class DeclarationNew(object):
-    def declaration_new(self, order_xsht):
+    def declaration_new(self, order_xsht="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_cghth = "XZBJDBZ" + order_time + "-ddgl"                                # 新增报检单备注
 
@@ -49,6 +49,10 @@ class DeclarationNew(object):
 
         # 其他信息备注
         order.send_key(key1=order_cghth, xpath=".//*/div[6]/div[2]/div/div/div/div[2]/span/textarea")
+
+        # # 附件
+        # order.upload_file(file1="D:\\1fortest\\Order\\7declarationNew.pdf",
+        #                   xpath=".//*/div[7]/div[2]/table/tbody/tr/td[1]/p[2]/span")
 
         time.sleep(5)
         order.link_text(u"提交")

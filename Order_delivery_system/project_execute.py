@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class ProjectExecute(object):
-    def project_execute(self, order_xsht):
+    def project_execute(self, order_xsht="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_xmgl_bz = "XMGLBZ" + order_time + "ddgl-XMJL"                      # 项目备注
 

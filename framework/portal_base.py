@@ -4,6 +4,7 @@
 
 import random
 import time
+import SendKeys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
@@ -69,6 +70,12 @@ class PortalBase(object):
         input_box.send_keys(key1)
         time.sleep(1)
 
+    # 输入框输入字符
+    def send_key1(self, key1, xpath):
+        input_box = self.driver.find_element_by_xpath(xpath)
+        input_box.send_keys(key1)
+        time.sleep(1)
+
     # 点击按钮
     def click_button(self, xpath):
         try:
@@ -84,8 +91,27 @@ class PortalBase(object):
         self.driver.find_element_by_partial_link_text(link_text).click()
 
     # 上传文件
-    def upload_file(self, file1, xpath):
+    def upload_file1(self, file1, xpath):
         self.driver.find_element_by_xpath(xpath="//*[@id='file']").send_keys(file1)
+
+    # 上传文件/ 打开界面上传文件
+    def upload_file(self, file1, xpath):
+        upload = self.driver.find_element_by_xpath(xpath)
+        upload.click()
+        time.sleep(2)
+        # SendKeys
+        SendKeys.SendKeys(file1)
+        time.sleep(1)
+        SendKeys.SendKeys("{ENTER}")
+        time.sleep(1)
+
+    def upload_file2(self, link_text, file):
+        self.driver.find_element_by_partial_link_text(link_text).click()
+        time.sleep(2)
+        SendKeys.SendKeys(file)
+        time.sleep(1)
+        SendKeys.SendKeys("{ENTER}")
+        time.sleep(1)
 
     # 下拉框数据选择
     def select_list(self, key1, xpath):
@@ -113,6 +139,14 @@ class PortalBase(object):
 
     def click_img(self):
         self.driver.find_element_by_xpath(".//*[@id='1']/h3/a").click()
+
+    def date_input(self, date, xpath):
+        js = "document.getElementByXpath(" + xpath + ").removeAttribute('readonly')"  # 1.原生js，移除属性
+        # js = "$('input[id=txtBeginDate]').removeAttr('readonly')"  # 2.jQuery，移除属性
+        # js = "$('input[id=txtBeginDate]').attr('readonly',false)"  # 3.jQuery，设置为false
+        # js = "$('input[id=txtBeginDate]').attr('readonly','')"  # 4.jQuery，设置为空（同3）
+        self.driver.execute_script(js)
+        self.driver.find_element_by_xpath(xpath).send_keys(date)
 
     def read_info(self, xpath):
         try:
@@ -169,10 +203,10 @@ class PortalBase(object):
         # order.switch_alert()
         time.sleep(3)
         self.driver.find_element_by_partial_link_text(u" 清 空 ").click()
-        time.sleep(1)
+        time.sleep(wait)
         self.driver.find_element_by_xpath(search).send_keys(search_key)
         self.driver.find_element_by_partial_link_text(u" 搜 索 ").click()
-        time.sleep(3)
+        time.sleep(wait)
         ActionChains(self.driver).move_to_element_with_offset(self.driver.find_element_by_xpath(move), 38, 38).perform()
         ActionChains(self.driver).click().perform()
         time.sleep(1)
