@@ -48,7 +48,7 @@ class PurchaseOrder(object):
         order.choose(button, search_key, search, move, wait=10)  # 项目号
 
         button = ".//*/div[3]/div[2]/div[1]/div[2]/div/div[2]/span/a/span"
-        search_key = "20180120000005"
+        search_key = "20180210000021"
         search = ".//*[@id='dialog']/div/div[1]/div/form/table/tbody/tr[1]/td[1]/span/input[1]"
         move = ".//*[@id='dialog']/div/div[2]/div/div/div/div[1]/div[2]/div[1]/div/table/tbody/tr/td[1]/div/span[1]"
         order.choose(button, search_key, search, move)  # 供应商名称

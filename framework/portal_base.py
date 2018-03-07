@@ -2,17 +2,27 @@
 #  coding=utf-8
 # portal基类  __author__ = 'kayiyo'
 
-import random
-import time
+import random,os.path,time
 import SendKeys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.chrome.options import Options
 
 
 class PortalBase(object):
-    driver = webdriver.Chrome()
+
+    driver_switch = 'on'
+    chrome_driver_path = os.path.dirname(os.path.abspath('.')) +'/tools/chromedriver.exe'
+    if  driver_switch == 'off':
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        driver = webdriver.Chrome(chrome_options=chrome_options)
+    else:
+        # driver = webdriver.Chrome('D:\\GitHub\\Python\\python_framework_automation\\tools\\chromedriver.exe')
+        # driver = webdriver.Chrome(chrome_driver_path)
+        driver = webdriver.Chrome()
 
     def load_web(self, url):        # 打开浏览器
         self.driver.get(url)
@@ -91,8 +101,8 @@ class PortalBase(object):
         self.driver.find_element_by_partial_link_text(link_text).click()
 
     # 上传文件
-    def upload_file1(self, file1, xpath):
-        self.driver.find_element_by_xpath(xpath="//*[@id='file']").send_keys(file1)
+    def upload_file1(self, file1, xpath = "//*[@id='file']"):
+        self.driver.find_element_by_xpath(xpath).send_keys(file1)
 
     # 上传文件/ 打开界面上传文件
     def upload_file(self, file1, xpath):

@@ -19,8 +19,8 @@ class ProjectExecute(object):
         time.sleep(5)
         order.send_key(key1=order_xsht,
                        xpath=".//*[@id='project_list']/div[1]/div[1]/div/div[2]/span/input[1]")     # 销售合同号搜索
-        order.select(key1=5,
-                     xpath=".//*[@id='project_list']/div[3]/div[1]/div/div[2]/span/input[1]")     # 项目状态未执行搜索
+        order.select(key1=3,
+                     xpath=".//*[@id='project_list']/div[3]/div[1]/div/div[2]/span/input[1]")     # 项目状态正常执行搜索
         order.link_text(u"搜索")      # 搜索
         time.sleep(3)
         order.link_text(u"办理")      # 办理

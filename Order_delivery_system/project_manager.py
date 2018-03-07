@@ -15,7 +15,7 @@ class ProjectManager(object):
         order_xmmc = "XMMC" + order_time + "ddgl"                           # 项目名称
         order_xmgl_bz = "XMGLBZ" + order_time + "ddgl"                      # 项目备注
 
-        # order.click_button(".//*[@id='sider']/div/div[2]/div[1]/div[1]")       # 项目管理
+        order.click_button(".//*[@id='sider']/div/div[2]/div[1]/div[1]")       # 项目管理
         order.link_text(u"项目列表")        # 订单列表
         time.sleep(5)
         order.send_key(key1=order_xsht,

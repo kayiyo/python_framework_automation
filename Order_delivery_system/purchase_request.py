@@ -13,7 +13,7 @@ class PurchaseRequest(object):
     def purchase_request(self, order_xsht="ddgl"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_xmh = "XMH" + order_time + "ddgl"                           # 项目号
-        # order.click_button(".//*[@id='sider']/div/div[2]/div[1]/div[1]")       # 项目管理
+        order.click_button(".//*[@id='sider']/div/div[2]/div[1]/div[1]")       # 项目管理
         order.link_text(u"项目列表")        # 订单列表
         time.sleep(5)
         order.send_key(key1=order_xsht,

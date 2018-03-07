@@ -29,7 +29,7 @@ class FinancialPayment(object):
         time.sleep(5)
 
         # 添加一条收款记录
-
+        account = random.randint(1, 10) * 10000
         order.link_text(u"添加一条收款记录")
         time.sleep(5)
         # 回款时间
@@ -43,14 +43,14 @@ class FinancialPayment(object):
         # 描述
         order.send_key(key1=u"收到客户款项", xpath=".//*[@id='ff']/table/tbody/tr[1]/td/span/input[1]")
         # 回款金额
-        order.send_key(key1="30000", xpath=".//*[@id='ff']/table/tbody/tr[2]/td/span/input[1]")
+        order.send_key(key1=account, xpath=".//*[@id='ff']/table/tbody/tr[2]/td/span/input[1]")
         # 发货金额
-        order.send_key(key1="30000", xpath=".//*[@id='ff']/table/tbody/tr[5]/td/span/input[1]")
+        order.send_key(key1=account, xpath=".//*[@id='ff']/table/tbody/tr[5]/td/span/input[1]")
         order.link_text(u"确定")
         time.sleep(3)
 
         # 添加一条收款记录
-
+        account = random.randint(1, 10) * 10000
         order.link_text(u"添加一条收款记录")
         time.sleep(5)
         # 回款时间
@@ -64,9 +64,9 @@ class FinancialPayment(object):
         # 描述
         order.send_key(key1=u"收到客户款项", xpath=".//*[@id='ff']/table/tbody/tr[1]/td/span/input[1]")
         # 回款金额
-        order.send_key(key1="50000", xpath=".//*[@id='ff']/table/tbody/tr[2]/td/span/input[1]")
+        order.send_key(key1=account, xpath=".//*[@id='ff']/table/tbody/tr[2]/td/span/input[1]")
         # 发货金额
-        order.send_key(key1="50000", xpath=".//*[@id='ff']/table/tbody/tr[5]/td/span/input[1]")
+        order.send_key(key1=account, xpath=".//*[@id='ff']/table/tbody/tr[5]/td/span/input[1]")
         order.link_text(u"确定")
         time.sleep(3)
 
