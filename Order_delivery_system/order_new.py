@@ -49,7 +49,7 @@ class NewOrder(object):
         move = ".//*[@id='dialog']/div/div[2]/div/div/div/div[1]/div[2]/div[1]/div/table/tbody/tr/td[1]/div/span[1]"
         order.choose(button, search_key, search, move)
 
-        order.select_list(key1=12,
+        order.select_list(key1=13,
                           xpath=".//*[@id='tt']/div[1]/div[2]/div/div[6]/div[1]/div/div[2]/span/input[1]")  # 签约主体公司
 
         # order.click_button(xpath=".//*[@id='tt']/div[1]/div[2]/div/div[5]/div[2]/div/div[2]/span/a/span/span")  # 市场经办人
@@ -87,22 +87,22 @@ class NewOrder(object):
         order.choose(button, search_key, search, move)
 
         button = ".//*[@id='tt']/div[1]/div[2]/div/div[7]/div[1]/div/div[2]/span/a/span"  # 执行分公司
-        search_key = u""
+        search_key = u"俄罗斯"
         search = ".//*[@id='dialog']/div/div[1]/div/form/table/tbody/tr/td[1]/span/input[1]"
         move = ".//*[@id='dialog']/div/div[2]/div/div/div/div/div[2]/div[1]/div/table/tbody/tr/td/div/span[1]"
         order.choose(button, search_key, search, move)
 
-        order.select_list(key1=4,
+        order.select_list(key1=2,
                           xpath=".//*[@id='tt']/div[1]/div[2]/div/div[8]/div[1]/div/div[2]/span/input[1]")  # 分销部
 
-        order.select_list(key1=11,
+        order.select(key1=8,
                           xpath=".//*[@id='tt']/div[1]/div[2]/div/div[8]/div[2]/div/div[2]/span/input[1]")  # 国家
 
         button = ".//*[@id='tt']/div[1]/div[2]/div/div[9]/div[1]/div/div[2]/span/a/span"    # CRM客户代码
-        search_key = "ERWKL002"
+        search_key = "ERHSK005"
         search = ".//*[@id='dialog']/div/div[1]/div/form/table/tbody/tr/td[2]/span/input[1]"
         move = ".//*[@id='dialog']/div/div[2]/div/div/div/div[1]/div[2]/div[1]/div/table/tbody/tr/td[1]/div/span[1]"
-        order.choose(button, search_key, search, move, wait=20)
+        order.choose(button, search_key, search, move, wait=10)
 
         order.select_list(key1=2,
                           xpath=".//*[@id='tt']/div[1]/div[2]/div/div[9]/div[2]/div/div[2]/span/input[1]")      # 客户类型

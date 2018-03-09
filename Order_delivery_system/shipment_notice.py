@@ -10,7 +10,7 @@ order = portal_base.PortalBase()
 
 
 class ShipmentNotice(object):
-    def shipment_notice(self):
+    def shipment_notice(self, order_ckfh="CKFH"):
         order_time = time.strftime("%Y%m%d%H%M%S", time.localtime())         # 所有用到的编号
         order_cghth = "XZBJDBZ" + order_time + "-ddgl"                                # 新增报检单备注
 
@@ -27,8 +27,8 @@ class ShipmentNotice(object):
 
         # 出口发货通知到单号
         button = ".//*[@id='logistics_deliveryAdd']/div/form/div[1]/div[2]/table/tbody/tr[2]/td[1]/span/a/span"
-        search_key = ""
-        search = ".//*[@id='dialog']/div/div[1]/div/form/table/tbody/tr/td[1]/span/input[1]"
+        search_key = order_ckfh
+        search = "//*[@id='dialog']/div/div[1]/div/form/table/tbody/tr/td[1]/span/input[1]"
         move = ".//*[@id='dialog']/div/div[2]/div/div/div/div[1]/div[2]/div[1]/div/table/tbody/tr/td[3]/div/span[1]"
         order.choose(button, search_key, search, move)
 

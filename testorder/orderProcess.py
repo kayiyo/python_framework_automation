@@ -80,16 +80,17 @@ for num in range(1, testtime+1):
         order.login1()  # 登录系统
         if order_process == 'orderNew':                     # 1新建订单
             order_xsht = orderNew.new_order()
-            mylogger.info("OrderXSHT NO:" + order_xsht)
+            mylogger.info("OrderXSHT NO: %s" % order_xsht)
         elif order_process == 'projectManager':             # 2管理项目
             projectManager.project_manager(order_xsht)
         elif order_process == 'projectExecute':             # 3执行项目
             projectExecute.project_execute(order_xsht)
         elif order_process == 'exportNotice':               # 4出口通知
-            exportNotice.export_notice(order_xsht)
+            order_ckfh = exportNotice.export_notice(order_xsht)
+            mylogger.info("OrderCKFH NO: %s" % order_ckfh)
         elif order_process == 'purchaseRequest':            # 5采购申请
             order_xmh = purchaseRequest.purchase_request(order_xsht)
-            mylogger.info("OrderXMH NO:" + order_xmh)
+            mylogger.info("OrderXMH NO: %s" % order_xmh)
         elif order_process == 'purchaseOrder':              # 6采购订单
             order_xmh = order_xmh
             purchaseOrder.purchase_order(order_xmh)
@@ -100,7 +101,7 @@ for num in range(1, testtime+1):
         elif order_process == 'operationIn':                # 9办理入库
             operationIn.operation_in(order_xsht)
         elif order_process == 'shipmentNotice':             # 10新建看货通知
-            shipmentNotice.shipment_notice()
+            shipmentNotice.shipment_notice(order_ckfh)
         elif order_process == 'checkSubmit':                # 11提交质检
             checkSubmit.check_submit(order_xsht)
         elif order_process == 'checkOut':                   # 12出库质检

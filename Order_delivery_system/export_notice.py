@@ -56,3 +56,19 @@ class ExportNotice(object):
         time.sleep(3)
         order.link_text(u"确定")
         time.sleep(3)
+
+        # 读取出口发货通知单号
+        order.link_text(u"订单列表")  # 订单列表
+        time.sleep(2)
+        order.send_key(key1=order_xsht,
+                       xpath=".//*[@id='order_list']/div[1]/div[1]/div/div[2]/span/input[1]")  # 销售合同号搜索
+        order.select(key1=4, xpath=".//*[@id='order_list']/div[3]/div[2]/div/div[2]/span/input[1]")  # 项目状态未执行搜索
+        order.link_text(u"搜索")  # 搜索
+        time.sleep(3)
+        order.link_text(u"办理")  # 生成出口通知单
+        time.sleep(5)
+        # xpath = ".//[starts-with(@id, 'datagrid-row-r')]/td[1]/div"
+        # xpath = './/*[@id="datagrid-row-r7-2-0"]/td[1]/div'
+        # order_ckfh = order.read_info(xpath)
+        order_ckfh = order.read_info(xpath="//div[contains(text(),'CKFH')]")
+        return order_ckfh
